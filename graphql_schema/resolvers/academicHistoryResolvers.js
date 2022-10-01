@@ -7,7 +7,10 @@ const academicHistoryResolvers = {
   Query: {
    async getAverages(_, {id}){
 			return await aH.getAverages(id)
-    }    
+    },
+    async getCareerCredits(_, {code}){
+			return await aH.getCareerCredits(code)
+    }     
   }
   // Mutations
 

@@ -10,4 +10,10 @@ const getAverages =async (id) => {
     return resp[0]
 }
 
-module.exports = { getAverages }
+const getCareerCredits =async (code) => {
+    console.log(code)
+    const url =`http://35.224.138.162:8080/api/careerCredits/${code}`
+    const resp= await requestPromiseNative({uri:url,json:true})
+    return resp[0]
+}
+module.exports = { getAverages, getCareerCredits}
