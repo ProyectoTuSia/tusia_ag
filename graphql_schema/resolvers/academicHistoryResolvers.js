@@ -1,9 +1,13 @@
+//import { getAverages } from "../../MS_access.js/academicHistoryAccess"
+const aH = require('../../MS_access.js/academicHistoryAccess')
+
+
 const academicHistoryResolvers = {
   // Queries
   Query: {
-    getAllUsers () {
-      return [{ user: 'fccastrol' }, { user: 'mcrodriguezc' }]
-    }
+   async getAverages(_, {id}){
+			return await aH.getAverages(id)
+    }    
   }
   // Mutations
 

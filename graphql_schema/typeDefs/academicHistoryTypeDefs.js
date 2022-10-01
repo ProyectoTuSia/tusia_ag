@@ -2,13 +2,16 @@ const { gql } = require('apollo-server-express')
 
 const academicHistoryTypeDefs = gql`
     # TYPES
-    type User {
-        user : String!
+    type Averages {
+        id_story: Int
+        PAPA : Float
+        PA: Float
+        PAPPI: Float
     }
 
     # Queries
     type Query {
-        getAllUsers : [User!]!
+        getAverages(id: Int) : Averages
     }
     # Mutations
 `
