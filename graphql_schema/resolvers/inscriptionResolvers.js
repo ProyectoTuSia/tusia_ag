@@ -13,8 +13,8 @@ const inscriptionResolvers = {
 
   // Mutations
   Mutation: {
-    async createStudent (_, { student }) {
-      return await inscriptionAccess.createStudent(student)
+    async createOrUpdateStudent (_, { student }) {
+      return await inscriptionAccess.createOrUpdateStudent(student)
     }
   }
 }

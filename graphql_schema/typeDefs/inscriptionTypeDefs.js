@@ -13,11 +13,11 @@ const inscriptionTypeDefs = gql`
     # Queries
     type Query {
         getAllStudents : [Student!]!
-        getStudentByUsername(username:String!) : Student!
+        getStudentByUsername(username:String!) : Student
     }
     # Mutations
     type Mutation {
-        createStudent(student: StudentInput!): Student!
+        createOrUpdateStudent(student: StudentInput!): Student!
     }
 `
 module.exports = { inscriptionTypeDefs }

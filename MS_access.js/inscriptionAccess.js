@@ -17,7 +17,7 @@ const getStudentByUsername = async (username) => {
   return await requestpromisenative(options)
 }
 
-const createStudent = async (student) => {
+const createOrUpdateStudent = async (student) => {
   const options = {
     uri: 'http://34.133.154.193:8071/student/',
     method: 'POST',
@@ -29,4 +29,4 @@ const createStudent = async (student) => {
   }
   return await requestpromisenative(options)
 }
-module.exports = { getAllStudents, getStudentByUsername, createStudent }
+module.exports = { getAllStudents, getStudentByUsername, createOrUpdateStudent }
