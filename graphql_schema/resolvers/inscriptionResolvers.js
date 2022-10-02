@@ -1,4 +1,4 @@
-const inscriptionAccess = require('../../MS_access.js/inscriptionAccess')
+const inscriptionAccess = require('../../MS_access/inscriptionAccess')
 
 const inscriptionResolvers = {
   // Queries
