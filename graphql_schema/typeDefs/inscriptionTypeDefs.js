@@ -44,6 +44,7 @@ const inscriptionTypeDefs = gql`
         getAllCareers : [Career]
 
         getAllGroupsOfSubject(subject:SubjectInput!) : [Group]
+        getGroupOfSubject(subject:SubjectInput!, number:Int!) : Group
     }
     # Mutations
     type Mutation {

@@ -14,6 +14,9 @@ const inscriptionResolvers = {
     },
     async getAllGroupsOfSubject (_, { subject }) {
       return await inscriptionAccess.getAllGroupsOfSubject(subject)
+    },
+    async getGroupOfSubject (_, { subject, number }) {
+      return await inscriptionAccess.getGroupOfSubject(subject, number)
     }
   },
 
