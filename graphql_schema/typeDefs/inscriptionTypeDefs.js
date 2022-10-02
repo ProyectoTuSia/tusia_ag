@@ -26,11 +26,8 @@ const inscriptionTypeDefs = gql`
         credits: Int!
         faculty: String!
     }
-    input SubjectInput{
-        code: Int!
-    }
     
-    type Group {
+    type SubjectGroup {
         number: Int!
         slots: Int!
         subject: Subject!
@@ -52,6 +49,11 @@ const inscriptionTypeDefs = gql`
         typology: String!
     }
 
+    type StudentHasSubjectGroup {
+        student: Student!
+        subjectGroup: SubjectGroup!
+    }
+
     # Queries
     type Query {
         getAllStudents : [Student]
@@ -59,14 +61,16 @@ const inscriptionTypeDefs = gql`
 
         getAllCareers : [Career]
 
-        getAllGroupsOfSubject(subject:SubjectInput!) : [Group]
-        getGroupOfSubject(subject:SubjectInput!, number:Int!) : Group
+        getAllGroupsOfSubject(subjectCode: Int!) : [SubjectGroup]
+        getGroupOfSubject(subjectCode: Int!, number:Int!) : SubjectGroup
 
         getCareersOfStudent(username:String!) : [StudentHasCareer]
 
         getStudentCoursedSubjects(username:String!) : [StudentCoursedSubject]
 
         getCareerSubjectsByTypology(careerCode: Int!, typology: String!) : [CareerHasSubject]
+
+        getAllGroupsOfStudent(username: String!) : [StudentHasSubjectGroup]
     }
     # Mutations
     type Mutation {

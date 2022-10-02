@@ -26,17 +26,17 @@ const getAllCareers = async () => {
   return await requestpromisenative(options)
 }
 
-const getAllGroupsOfSubject = async (subject) => {
+const getAllGroupsOfSubject = async (subjectCode) => {
   const options = {
-    uri: 'http://' + host + ':8071/subjectgroup/' + String(subject.code),
+    uri: 'http://' + host + ':8071/subjectgroup/' + String(subjectCode),
     json: true
   }
   return await requestpromisenative(options)
 }
 
-const getGroupOfSubject = async (subject, number) => {
+const getGroupOfSubject = async (subjectCode, number) => {
   const options = {
-    uri: 'http://' + host + ':8071/subjectgroup/' + String(subject.code) + '/' + String(number),
+    uri: 'http://' + host + ':8071/subjectgroup/' + String(subjectCode) + '/' + String(number),
     json: true
   }
   return await requestpromisenative(options)
@@ -65,6 +65,14 @@ const getCareerSubjectsByTypology = async (careerCode, typology) => {
       typology: typology
     },
     uri: 'http://' + host + ':8071/careerhassubject/',
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
+const getAllGroupsOfStudent = async (username) => {
+  const options = {
+    uri: 'http://' + host + ':8071/studenthassubjectgroup/' + username,
     json: true
   }
   return await requestpromisenative(options)
@@ -132,6 +140,7 @@ module.exports = {
   getCareersOfStudent,
   getStudentCoursedSubjects,
   getCareerSubjectsByTypology,
+  getAllGroupsOfStudent,
   createOrUpdateStudent,
   createOrUpdateCareer,
   addCoursedSubjectToStudent,

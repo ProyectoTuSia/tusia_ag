@@ -12,11 +12,11 @@ const inscriptionResolvers = {
     async getAllCareers () {
       return await inscriptionAccess.getAllCareers()
     },
-    async getAllGroupsOfSubject (_, { subject }) {
-      return await inscriptionAccess.getAllGroupsOfSubject(subject)
+    async getAllGroupsOfSubject (_, { subjectCode }) {
+      return await inscriptionAccess.getAllGroupsOfSubject(subjectCode)
     },
-    async getGroupOfSubject (_, { subject, number }) {
-      return await inscriptionAccess.getGroupOfSubject(subject, number)
+    async getGroupOfSubject (_, { subjectCode, number }) {
+      return await inscriptionAccess.getGroupOfSubject(subjectCode, number)
     },
     async getCareersOfStudent (_, { username }) {
       return await inscriptionAccess.getCareersOfStudent(username)
@@ -26,6 +26,9 @@ const inscriptionResolvers = {
     },
     async getCareerSubjectsByTypology (_, { careerCode, typology }) {
       return await inscriptionAccess.getCareerSubjectsByTypology(careerCode, typology)
+    },
+    async getAllGroupsOfStudent (_, { username }) {
+      return await inscriptionAccess.getAllGroupsOfStudent(username)
     }
   },
 
