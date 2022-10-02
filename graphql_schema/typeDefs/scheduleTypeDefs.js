@@ -27,6 +27,7 @@ const scheduleTypeDefs = gql`
     }
 
     type Schedule {
+        userId : String!
         monday : [Course]!
         tuesday : [Course]!
         wednesday : [Course]!
@@ -36,6 +37,7 @@ const scheduleTypeDefs = gql`
     }
 
     input inputSchedule {
+        userId : String!
         monday : [Course]!
         tuesday : [Course]!
         wednesday : [Course]!
