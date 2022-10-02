@@ -89,6 +89,16 @@ const academicHistoryTypeDefs = gql`
         trabajo_de_grado_signed:Int
         total_signed:Int
     }
+    input creditsInput{
+        fundamentacion_obligatoria: Int
+        fundamentacion_optativa: Int
+        disciplinar_obligatoria: Int
+        disciplinar_optativa: Int
+        libre_eleccion: Int
+        nivelacion: Int
+        trabajo_de_grado: Int
+        total: Int
+    }
 
     # Queries
     type Query {
@@ -102,6 +112,8 @@ const academicHistoryTypeDefs = gql`
     # Mutations
     type Mutation {
         updateCreditsSigned(id:Int, creditsSigned: creditsSignedInput): String
+        cancelCreditsLoss(id:Int, credits: creditsInput):String
+        cancelCreditsNoLoss(id:Int, credits: creditsInput):String
     }
 `
 module.exports = { academicHistoryTypeDefs }

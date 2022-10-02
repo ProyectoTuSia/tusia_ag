@@ -50,7 +50,46 @@ const updateCreditsSigned =async (id,creditsSigned) => {
         total_signed:creditsSigned.total_signed
     },
     json:true})
-    console.log(resp)
     return resp.message
 }
-module.exports = { getAverages, getCareerCredits,getCreditHistory,getCreditSummary,getAcademicStory,getStudentSubjects,updateCreditsSigned}
+const cancelCreditsLoss =async (id,credits) => {
+    const url =`http://35.224.138.162:8080/api/cancelCredits/${id}`
+    const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
+        fundamentacion_obligatoria:credits.fundamentacion_obligatoria,
+        fundamentacion_optativa:credits.fundamentacion_optativa,
+        disciplinar_obligatoria:credits.disciplinar_obligatoria,
+        disciplinar_optativa:credits.disciplinar_optativa,
+        libre_eleccion:credits.libre_eleccion,
+        nivelacion:credits.nivelacion,
+        trabajo_de_grado:credits.trabajo_de_grado,
+        total:credits.total
+    },
+    json:true})
+    return resp.message
+}
+const cancelCreditsNoLoss =async (id,credits) => {
+    const url =`http://35.224.138.162:8080/api/cancelCredits/noLoss/${id}`
+    const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
+        fundamentacion_obligatoria:credits.fundamentacion_obligatoria,
+        fundamentacion_optativa:credits.fundamentacion_optativa,
+        disciplinar_obligatoria:credits.disciplinar_obligatoria,
+        disciplinar_optativa:credits.disciplinar_optativa,
+        libre_eleccion:credits.libre_eleccion,
+        nivelacion:credits.nivelacion,
+        trabajo_de_grado:credits.trabajo_de_grado,
+        total:credits.total
+    },
+    json:true})
+    return resp.message
+}
+module.exports = { 
+    getAverages, 
+    getCareerCredits,
+    getCreditHistory,
+    getCreditSummary,
+    getAcademicStory,
+    getStudentSubjects,
+    updateCreditsSigned,
+    cancelCreditsLoss,
+    cancelCreditsNoLoss
+}

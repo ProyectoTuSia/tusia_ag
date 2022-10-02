@@ -29,6 +29,12 @@ const academicHistoryResolvers = {
   Mutation:{
     async updateCreditsSigned(_, {id, creditsSigned}){
 			return await aH.updateCreditsSigned(id,creditsSigned)
+    },
+    async cancelCreditsLoss(_, {id, credits}){
+			return await aH.cancelCreditsLoss(id,credits)
+    },
+    async cancelCreditsNoLoss(_, {id, credits}){
+			return await aH.cancelCreditsNoLoss(id,credits)
     } 
   }
 
