@@ -17,6 +17,14 @@ const getStudentByUsername = async (username) => {
   return await requestpromisenative(options)
 }
 
+const getAllCareers = async () => {
+  const options = {
+    uri: 'http://34.133.154.193:8071/career',
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 const createOrUpdateStudent = async (student) => {
   const options = {
     uri: 'http://34.133.154.193:8071/student/',
@@ -29,4 +37,24 @@ const createOrUpdateStudent = async (student) => {
   }
   return await requestpromisenative(options)
 }
-module.exports = { getAllStudents, getStudentByUsername, createOrUpdateStudent }
+
+const createOrUpdateCareer = async (career) => {
+  const options = {
+    uri: 'http://34.133.154.193:8071/career/',
+    method: 'POST',
+    body: {
+      code: career.code,
+      name: career.name
+    },
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
+module.exports = {
+  getAllStudents,
+  getStudentByUsername,
+  getAllCareers,
+  createOrUpdateStudent,
+  createOrUpdateCareer
+}

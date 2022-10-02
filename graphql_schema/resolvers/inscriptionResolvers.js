@@ -8,6 +8,9 @@ const inscriptionResolvers = {
     },
     async getStudentByUsername (_, { username }) {
       return await inscriptionAccess.getStudentByUsername(username)
+    },
+    async getAllCareers () {
+      return await inscriptionAccess.getAllCareers()
     }
   },
 
@@ -15,6 +18,9 @@ const inscriptionResolvers = {
   Mutation: {
     async createOrUpdateStudent (_, { student }) {
       return await inscriptionAccess.createOrUpdateStudent(student)
+    },
+    async createOrUpdateCareer (_, { career }) {
+      return await inscriptionAccess.createOrUpdateCareer(career)
     }
   }
 }
