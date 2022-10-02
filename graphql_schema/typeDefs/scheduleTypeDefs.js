@@ -14,6 +14,18 @@ const scheduleTypeDefs = gql`
         timetable : String!
     }
 
+    input inputCourse {
+        name : String!
+        professor : String!
+        code : Int!
+        credits : Int!
+        building : String!
+        classroom : String!
+        group : Int!
+        typo: String
+        timetable : String!
+    }
+
     type Schedule {
         monday : [Course]!
         tuesday : [Course]!
@@ -22,12 +34,23 @@ const scheduleTypeDefs = gql`
         friday : [Course]!
         saturday : [Course]!
     }
+
+    input inputSchedule {
+        monday : [Course]!
+        tuesday : [Course]!
+        wednesday : [Course]!
+        thursday : [Course]!
+        friday : [Course]!
+        saturday : [Course]!
+    }
+
+    
     # Queries
     getSchedule(userId : String!) : Schedule!
 
     # Mutations
     mutation {
-        putSchedule( userId: String!, monday : [Course]!, tuesday : [Course]!, wednesday : [Course]!, thursday: [Course]!, friday : [Course]!, saturday : [Course]! )
+        putSchedule( userId: String!, schedule : Schedule! )
     }
 `
 module.exports = { scheduleTypeDefs }
