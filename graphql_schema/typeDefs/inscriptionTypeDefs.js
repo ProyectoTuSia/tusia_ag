@@ -54,6 +54,18 @@ const inscriptionTypeDefs = gql`
         subjectGroup: SubjectGroup!
     }
 
+    type Schedule {
+        id : Int!
+        start_time : String!
+        end_time : String!
+        day : String!
+    }
+
+    type SubjectGroupHasSchedule {
+        subjectGroup : SubjectGroup!
+        schedule : Schedule!
+    }
+
     # Queries
     type Query {
         getAllStudents : [Student]
@@ -62,7 +74,7 @@ const inscriptionTypeDefs = gql`
         getAllCareers : [Career]
 
         getAllGroupsOfSubject(subjectCode: Int!) : [SubjectGroup]
-        getGroupOfSubject(subjectCode: Int!, number:Int!) : SubjectGroup
+        getGroupOfSubject(subjectCode: Int!, groupNumber:Int!) : SubjectGroup
 
         getCareersOfStudent(username:String!) : [StudentHasCareer]
 
@@ -71,6 +83,8 @@ const inscriptionTypeDefs = gql`
         getCareerSubjectsByTypology(careerCode: Int!, typology: String!) : [CareerHasSubject]
 
         getAllGroupsOfStudent(username: String!) : [StudentHasSubjectGroup]
+
+        getSchedulesOfGroup(subjectCode : Int!, groupNumber: Int!) : [SubjectGroupHasSchedule]
     }
     # Mutations
     type Mutation {

@@ -15,8 +15,8 @@ const inscriptionResolvers = {
     async getAllGroupsOfSubject (_, { subjectCode }) {
       return await inscriptionAccess.getAllGroupsOfSubject(subjectCode)
     },
-    async getGroupOfSubject (_, { subjectCode, number }) {
-      return await inscriptionAccess.getGroupOfSubject(subjectCode, number)
+    async getGroupOfSubject (_, { subjectCode, groupNumber }) {
+      return await inscriptionAccess.getGroupOfSubject(subjectCode, groupNumber)
     },
     async getCareersOfStudent (_, { username }) {
       return await inscriptionAccess.getCareersOfStudent(username)
@@ -29,6 +29,9 @@ const inscriptionResolvers = {
     },
     async getAllGroupsOfStudent (_, { username }) {
       return await inscriptionAccess.getAllGroupsOfStudent(username)
+    },
+    async getSchedulesOfGroup (_, { subjectCode, groupNumber }) {
+      return await inscriptionAccess.getSchedulesOfGroup(subjectCode, groupNumber)
     }
   },
 
