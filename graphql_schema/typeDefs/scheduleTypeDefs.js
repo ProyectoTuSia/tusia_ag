@@ -26,7 +26,7 @@ const scheduleTypeDefs = gql`
         timetable : String!
     }
 
-    type Schedule {
+    type sc_Schedule {
         userId : String!
         monday : [Course]!
         tuesday : [Course]!
@@ -36,7 +36,7 @@ const scheduleTypeDefs = gql`
         saturday : [Course]!
     }
 
-    input inputSchedule {
+    input sc_inputSchedule {
         userId : String!
         monday : [Course]!
         tuesday : [Course]!
@@ -48,11 +48,11 @@ const scheduleTypeDefs = gql`
 
     
     # Queries
-    getSchedule(userId : String!) : Schedule!
+    sc_getSchedule(userId : String!) : Schedule!
 
     # Mutations
     mutation {
-        putSchedule( userId: String!, schedule : Schedule! )
+        sc_putSchedule( schedule : sc_inputSchedule! )
     }
 `
 module.exports = { scheduleTypeDefs }

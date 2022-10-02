@@ -3,12 +3,20 @@ const { getSchedule, postSchedule} = require('../../MS_access/scheduleAccess.js'
 const scheduleResolvers = {
   // Queries
   Query : {
-    async getSchedule(userId){
-      const scheduleData = await getSchedule(userId)
+    async sc_getSchedule(_, userId){
+      const scheduleData = await sc_getSchedule(userId)
       return scheduleData
     }
-  }
+  },
   // Mutations
+   Mutation : {
+    async sc_putSchedule (_, { schedule }) {
+      const sendRequest = await sc_putSchedule( schedule)
+      return sendRequest
+    }
+
+   }
+
 
 }
 module.exports = { scheduleResolvers }
