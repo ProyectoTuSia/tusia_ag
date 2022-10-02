@@ -17,6 +17,12 @@ const inscriptionResolvers = {
     },
     async getGroupOfSubject (_, { subject, number }) {
       return await inscriptionAccess.getGroupOfSubject(subject, number)
+    },
+    async getCareersOfStudent (_, { username }) {
+      return await inscriptionAccess.getCareersOfStudent(username)
+    },
+    async getStudentCoursedSubjects (_, { username }) {
+      return await inscriptionAccess.getStudentCoursedSubjects(username)
     }
   },
 
@@ -27,6 +33,9 @@ const inscriptionResolvers = {
     },
     async createOrUpdateCareer (_, { career }) {
       return await inscriptionAccess.createOrUpdateCareer(career)
+    },
+    async addCoursedSubjectToStudent (_, { subjectCode, studentUsername }) {
+      return await inscriptionAccess.addCoursedSubjectToStudent(subjectCode, studentUsername)
     }
   }
 }

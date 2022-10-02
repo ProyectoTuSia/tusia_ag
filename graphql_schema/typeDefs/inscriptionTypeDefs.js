@@ -36,6 +36,16 @@ const inscriptionTypeDefs = gql`
         subject: Subject!
     }
 
+    type StudentHasCareer {
+        student: Student!
+        career: Career!
+    }
+
+    type StudentCoursedSubject {
+        student: Student!
+        subject: Subject!
+    }
+
     # Queries
     type Query {
         getAllStudents : [Student]
@@ -45,12 +55,18 @@ const inscriptionTypeDefs = gql`
 
         getAllGroupsOfSubject(subject:SubjectInput!) : [Group]
         getGroupOfSubject(subject:SubjectInput!, number:Int!) : Group
+
+        getCareersOfStudent(username:String!) : [StudentHasCareer]
+
+        getStudentCoursedSubjects(username:String!) : [StudentCoursedSubject]
     }
     # Mutations
     type Mutation {
         createOrUpdateStudent(student: StudentInput!): Student!
 
         createOrUpdateCareer(career: CareerInput!): Career!
+
+        addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!): String!
     }
 `
 module.exports = { inscriptionTypeDefs }

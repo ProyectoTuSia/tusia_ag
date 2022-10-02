@@ -42,6 +42,22 @@ const getGroupOfSubject = async (subject, number) => {
   return await requestpromisenative(options)
 }
 
+const getCareersOfStudent = async (username) => {
+  const options = {
+    uri: 'http://' + host + ':8071/studenthascareer/' + username,
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
+const getStudentCoursedSubjects = async (username) => {
+  const options = {
+    uri: 'http://' + host + ':8071/studentcoursedsubject/' + username,
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 const createOrUpdateStudent = async (student) => {
   const options = {
     uri: 'http://' + host + ':8071/student/',
@@ -68,12 +84,28 @@ const createOrUpdateCareer = async (career) => {
   return await requestpromisenative(options)
 }
 
+const addCoursedSubjectToStudent = async (subjectCode, studentUsername) => {
+  const options = {
+    uri: 'http://' + host + ':8071/studentcoursedsubject/',
+    method: 'POST',
+    body: {
+      subject_code: subjectCode,
+      student_username: studentUsername
+    },
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 module.exports = {
   getAllStudents,
   getStudentByUsername,
   getAllCareers,
   getAllGroupsOfSubject,
   getGroupOfSubject,
+  getCareersOfStudent,
+  getStudentCoursedSubjects,
   createOrUpdateStudent,
-  createOrUpdateCareer
+  createOrUpdateCareer,
+  addCoursedSubjectToStudent
 }
