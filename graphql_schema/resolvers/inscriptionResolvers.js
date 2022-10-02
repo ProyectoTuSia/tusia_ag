@@ -11,6 +11,9 @@ const inscriptionResolvers = {
     },
     async getAllCareers () {
       return await inscriptionAccess.getAllCareers()
+    },
+    async getAllGroupsOfSubject (_, { subject }) {
+      return await inscriptionAccess.getAllGroupsOfSubject(subject)
     }
   },
 

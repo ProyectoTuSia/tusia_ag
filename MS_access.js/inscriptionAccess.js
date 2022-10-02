@@ -26,6 +26,14 @@ const getAllCareers = async () => {
   return await requestpromisenative(options)
 }
 
+const getAllGroupsOfSubject = async (subject) => {
+  const options = {
+    uri: 'http://' + host + ':8071/subjectgroup/' + String(subject.code),
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 const createOrUpdateStudent = async (student) => {
   const options = {
     uri: 'http://' + host + ':8071/student/',
@@ -56,6 +64,7 @@ module.exports = {
   getAllStudents,
   getStudentByUsername,
   getAllCareers,
+  getAllGroupsOfSubject,
   createOrUpdateStudent,
   createOrUpdateCareer
 }
