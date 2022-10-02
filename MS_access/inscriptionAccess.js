@@ -58,6 +58,18 @@ const getStudentCoursedSubjects = async (username) => {
   return await requestpromisenative(options)
 }
 
+const getCareerSubjectsByTypology = async (careerCode, typology) => {
+  const options = {
+    body: {
+      career_code: careerCode,
+      typology: typology
+    },
+    uri: 'http://' + host + ':8071/careerhassubject/',
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 const createOrUpdateStudent = async (student) => {
   const options = {
     uri: 'http://' + host + ':8071/student/',
@@ -105,6 +117,7 @@ module.exports = {
   getGroupOfSubject,
   getCareersOfStudent,
   getStudentCoursedSubjects,
+  getCareerSubjectsByTypology,
   createOrUpdateStudent,
   createOrUpdateCareer,
   addCoursedSubjectToStudent

@@ -46,6 +46,12 @@ const inscriptionTypeDefs = gql`
         subject: Subject!
     }
 
+    type CareerHasSubject {
+        career: Career!
+        subject: Subject!
+        typology: String!
+    }
+
     # Queries
     type Query {
         getAllStudents : [Student]
@@ -59,6 +65,8 @@ const inscriptionTypeDefs = gql`
         getCareersOfStudent(username:String!) : [StudentHasCareer]
 
         getStudentCoursedSubjects(username:String!) : [StudentCoursedSubject]
+
+        getCareerSubjectsByTypology(careerCode: Int!, typology: String!) : [CareerHasSubject]
     }
     # Mutations
     type Mutation {

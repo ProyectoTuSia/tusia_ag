@@ -23,6 +23,9 @@ const inscriptionResolvers = {
     },
     async getStudentCoursedSubjects (_, { username }) {
       return await inscriptionAccess.getStudentCoursedSubjects(username)
+    },
+    async getCareerSubjectsByTypology (_, { careerCode, typology }) {
+      return await inscriptionAccess.getCareerSubjectsByTypology(careerCode, typology)
     }
   },
 
