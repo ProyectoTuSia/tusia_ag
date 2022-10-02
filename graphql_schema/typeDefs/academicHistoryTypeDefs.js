@@ -99,6 +99,36 @@ const academicHistoryTypeDefs = gql`
         trabajo_de_grado: Int
         total: Int
     }
+    input averagesInput {
+        PAPA : Float
+        PA: Float
+        PAPPI: Float
+    }
+    input creditsTakenInput{
+        fundamentacion_obligatoria_taken:Int
+        fundamentacion_optativa_taken:Int
+        disciplinar_obligatoria_taken:Int
+        disciplinar_optativa_taken:Int
+        libre_eleccion_taken:Int
+        nivelacion_taken:Int
+        trabajo_de_grado_taken:Int
+        total_taken:Int
+        fundamentacion_obligatoria_approved:Int
+        fundamentacion_optativa_approved:Int
+        disciplinar_obligatoria_approved:Int
+        disciplinar_optativa_approved:Int
+        libre_eleccion_approved:Int
+        nivelacion_approved:Int
+        trabajo_de_grado_approved:Int
+        total_approved:Int
+    }
+    input studentSubjectInput{
+        subject_code:Int
+        tipology:String
+        period:String
+        grade:Float
+        outcome:String
+    }
 
     # Queries
     type Query {
@@ -114,6 +144,9 @@ const academicHistoryTypeDefs = gql`
         updateCreditsSigned(id:Int, creditsSigned: creditsSignedInput): String
         cancelCreditsLoss(id:Int, credits: creditsInput):String
         cancelCreditsNoLoss(id:Int, credits: creditsInput):String
+        updateAverages(id:Int, averages:averagesInput):String
+        updateCreditsTaken(id:Int, creditsTaken:creditsTakenInput):String
+        newStudentSubjects(id:Int, studentSubject:studentSubjectInput):String
     }
 `
 module.exports = { academicHistoryTypeDefs }

@@ -82,6 +82,51 @@ const cancelCreditsNoLoss =async (id,credits) => {
     json:true})
     return resp.message
 }
+const updateAverages =async (id,averages) => {
+    const url =`http://35.224.138.162:8080/api/averages/${id}`
+    const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
+        PAPA:averages.PAPA,
+        PA:averages.PA,
+        PAPPI:averages.PAPPI
+    },
+    json:true})
+    return resp.message
+}
+const updateCreditsTaken =async (id,creditsTaken) => {
+    const url =`http://35.224.138.162:8080/api/creditsTaken/${id}`
+    const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
+        fundamentacion_obligatoria_taken:creditsTaken.fundamentacion_obligatoria_taken,
+        fundamentacion_optativa_taken:creditsTaken.fundamentacion_optativa_taken,
+        disciplinar_obligatoria_taken:creditsTaken.disciplinar_obligatoria_taken,
+        disciplinar_optativa_taken:creditsTaken.disciplinar_optativa_taken,
+        libre_eleccion_taken:creditsTaken.libre_eleccion_taken,
+        nivelacion_taken:creditsTaken.nivelacion_taken,
+        trabajo_de_grado_taken:creditsTaken.trabajo_de_grado_taken,
+        total_taken:creditsTaken.total_taken,
+        fundamentacion_obligatoria_approved:creditsTaken.fundamentacion_obligatoria_approved,
+        fundamentacion_optativa_approved:creditsTaken.fundamentacion_optativa_approved,
+        disciplinar_obligatoria_approved:creditsTaken.disciplinar_obligatoria_approved,
+        disciplinar_optativa_approved:creditsTaken.disciplinar_optativa_approved,
+        libre_eleccion_approved:creditsTaken.libre_eleccion_approved,
+        nivelacion_approved:creditsTaken.nivelacion_approved,
+        trabajo_de_grado_approved:creditsTaken.trabajo_de_grado_approved,
+        total_approved:creditsTaken.total_approved,
+    },
+    json:true})
+    return resp.message
+}
+const newStudentSubjects =async (id,studentSubject) => {
+    const url =`http://35.224.138.162:8080/api/studentSubjects/${id}`
+    const resp= await requestPromiseNative({uri:url, method:'POST', body:{
+        subject_code:studentSubject.subject_code,
+        tipology:studentSubject.tipology,
+        period:studentSubject.period,
+        grade:studentSubject.grade,
+        outcome:studentSubject.outcome
+    },
+    json:true})
+    return resp.message
+}
 module.exports = { 
     getAverages, 
     getCareerCredits,
@@ -91,5 +136,8 @@ module.exports = {
     getStudentSubjects,
     updateCreditsSigned,
     cancelCreditsLoss,
-    cancelCreditsNoLoss
+    cancelCreditsNoLoss,
+    updateAverages,
+    updateCreditsTaken,
+    newStudentSubjects
 }

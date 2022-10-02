@@ -35,7 +35,16 @@ const academicHistoryResolvers = {
     },
     async cancelCreditsNoLoss(_, {id, credits}){
 			return await aH.cancelCreditsNoLoss(id,credits)
-    } 
+    },
+    async updateAverages(_, {id, averages}){
+			return await aH.updateAverages(id,averages)
+    },
+    async updateCreditsTaken(_, {id, creditsTaken}){
+			return await aH.updateCreditsTaken(id,creditsTaken)
+    },
+    async newStudentSubjects(_, {id, studentSubject}){
+			return await aH.newStudentSubjects(id,studentSubject)
+    },
   }
 
 }
