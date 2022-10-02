@@ -1,44 +1,45 @@
 const { response } = require("express")
 const requestPromiseNative = require("request-promise-native")
+const ip="34.135.171.161"
 
 
 // Manage REST communication with microservice
 const getAverages =async (id) => {
-    const url =`http://35.224.138.162:8080/api/averages/${id}`
+    const url =`http://${ip}:8080/api/averages/${id}`
     const resp= await requestPromiseNative({uri:url,json:true})
     return resp[0]
 }
 
 const getCareerCredits =async (code) => {
-    const url =`http://35.224.138.162:8080/api/careerCredits/${code}`
+    const url =`http://${ip}:8080/api/careerCredits/${code}`
     const resp= await requestPromiseNative({uri:url,json:true})
     return resp[0]
 }
 
 const getCreditHistory =async (id) => {
-    const url =`http://35.224.138.162:8080/api/creditHistory/${id}`
+    const url =`http://${ip}:8080/api/creditHistory/${id}`
     const resp= await requestPromiseNative({uri:url,json:true})
     return resp[0]
 }
 
 const getCreditSummary =async (id) => {
-    const url =`http://35.224.138.162:8080/api/creditSummary/${id}`
+    const url =`http://${ip}:8080/api/creditSummary/${id}`
     const resp= await requestPromiseNative({uri:url,json:true})
     return resp[0]
 }
 
 const getAcademicStory =async (id) => {
-    const url =`http://35.224.138.162:8080/api/academicStory/${id}`
+    const url =`http://${ip}:8080/api/academicStory/${id}`
     const resp= await requestPromiseNative({uri:url,json:true})
     return resp[0]
 }
 const getStudentSubjects =async (id) => {
-    const url =`http://35.224.138.162:8080/api/studentSubjects/${id}`
+    const url =`http://${ip}:8080/api/studentSubjects/${id}`
     const resp= await requestPromiseNative({uri:url,json:true})
     return resp
 }
 const updateCreditsSigned =async (id,creditsSigned) => {
-    const url =`http://35.224.138.162:8080/api/creditsSigned/${id}`
+    const url =`http://${ip}:8080/api/creditsSigned/${id}`
     const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
         fundamentacion_obligatoria_signed:creditsSigned.fundamentacion_obligatoria_signed,
         fundamentacion_optativa_signed:creditsSigned.fundamentacion_optativa_signed,
@@ -53,7 +54,7 @@ const updateCreditsSigned =async (id,creditsSigned) => {
     return resp.message
 }
 const cancelCreditsLoss =async (id,credits) => {
-    const url =`http://35.224.138.162:8080/api/cancelCredits/${id}`
+    const url =`http://${ip}:8080/api/cancelCredits/${id}`
     const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
         fundamentacion_obligatoria:credits.fundamentacion_obligatoria,
         fundamentacion_optativa:credits.fundamentacion_optativa,
@@ -68,7 +69,7 @@ const cancelCreditsLoss =async (id,credits) => {
     return resp.message
 }
 const cancelCreditsNoLoss =async (id,credits) => {
-    const url =`http://35.224.138.162:8080/api/cancelCredits/noLoss/${id}`
+    const url =`http://${ip}:8080/api/cancelCredits/noLoss/${id}`
     const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
         fundamentacion_obligatoria:credits.fundamentacion_obligatoria,
         fundamentacion_optativa:credits.fundamentacion_optativa,
@@ -83,7 +84,7 @@ const cancelCreditsNoLoss =async (id,credits) => {
     return resp.message
 }
 const updateAverages =async (id,averages) => {
-    const url =`http://35.224.138.162:8080/api/averages/${id}`
+    const url =`http://${ip}:8080/api/averages/${id}`
     const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
         PAPA:averages.PAPA,
         PA:averages.PA,
@@ -93,7 +94,7 @@ const updateAverages =async (id,averages) => {
     return resp.message
 }
 const updateCreditsTaken =async (id,creditsTaken) => {
-    const url =`http://35.224.138.162:8080/api/creditsTaken/${id}`
+    const url =`http://${ip}:8080/api/creditsTaken/${id}`
     const resp= await requestPromiseNative({uri:url, method:'PUT', body:{
         fundamentacion_obligatoria_taken:creditsTaken.fundamentacion_obligatoria_taken,
         fundamentacion_optativa_taken:creditsTaken.fundamentacion_optativa_taken,
@@ -116,7 +117,7 @@ const updateCreditsTaken =async (id,creditsTaken) => {
     return resp.message
 }
 const newStudentSubjects =async (id,studentSubject) => {
-    const url =`http://35.224.138.162:8080/api/studentSubjects/${id}`
+    const url =`http://${ip}:8080/api/studentSubjects/${id}`
     const resp= await requestPromiseNative({uri:url, method:'POST', body:{
         subject_code:studentSubject.subject_code,
         tipology:studentSubject.tipology,
