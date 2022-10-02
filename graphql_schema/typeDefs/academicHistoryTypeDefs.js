@@ -2,13 +2,13 @@ const { gql } = require('apollo-server-express')
 
 const academicHistoryTypeDefs = gql`
     # TYPES
-    type Averages {
+    type aH_Averages {
         id_story: Int
         PAPA : Float
         PA: Float
         PAPPI: Float
     }
-    type careerCredits{
+    type aH_careerCredits{
         code: Int
         fundamentacion_obligatoria: Int
         fundamentacion_optativa: Int
@@ -19,7 +19,7 @@ const academicHistoryTypeDefs = gql`
         trabajo_de_grado:Int
         total: Int
     }
-    type creditHistory{
+    type aH_creditHistory{
         id_story: Int
         fundamentacion_optativa_approved: Int
         fundamentacion_obligatoria_approved: Int
@@ -54,7 +54,7 @@ const academicHistoryTypeDefs = gql`
         libre_eleccion_taken: Int
         total_taken: Int
     }
-    type creditSummary{
+    type aH_creditSummary{
         id_story: Int
         surplus_credits: Int
         canceled_credits: Int
@@ -63,7 +63,7 @@ const academicHistoryTypeDefs = gql`
         credit_quota: Int
         available_credits: Int
     }
-    type academicStory{
+    type aH_academicStory{
         id: Int
         username: String
         faculty: String
@@ -71,7 +71,7 @@ const academicHistoryTypeDefs = gql`
         career_name: String
         state: String
     }
-    type studentSubject{
+    type aH_studentSubject{
         subject_code: Int
         id_story: Int
         tipology: String
@@ -79,7 +79,7 @@ const academicHistoryTypeDefs = gql`
         grade: Float
         outcome: String
     }
-    input creditsSignedInput{
+    input aH_creditsSignedInput{
         fundamentacion_obligatoria_signed:Int
         fundamentacion_optativa_signed:Int
         disciplinar_obligatoria_signed:Int
@@ -89,7 +89,7 @@ const academicHistoryTypeDefs = gql`
         trabajo_de_grado_signed:Int
         total_signed:Int
     }
-    input creditsInput{
+    input aH_creditsInput{
         fundamentacion_obligatoria: Int
         fundamentacion_optativa: Int
         disciplinar_obligatoria: Int
@@ -99,12 +99,12 @@ const academicHistoryTypeDefs = gql`
         trabajo_de_grado: Int
         total: Int
     }
-    input averagesInput {
+    input aH_averagesInput {
         PAPA : Float
         PA: Float
         PAPPI: Float
     }
-    input creditsTakenInput{
+    input aH_creditsTakenInput{
         fundamentacion_obligatoria_taken:Int
         fundamentacion_optativa_taken:Int
         disciplinar_obligatoria_taken:Int
@@ -122,7 +122,7 @@ const academicHistoryTypeDefs = gql`
         trabajo_de_grado_approved:Int
         total_approved:Int
     }
-    input studentSubjectInput{
+    input aH_studentSubjectInput{
         subject_code:Int
         tipology:String
         period:String
@@ -132,21 +132,21 @@ const academicHistoryTypeDefs = gql`
 
     # Queries
     type Query {
-        getAverages(id: Int) : Averages
-        getCareerCredits(code: Int) : careerCredits
-        getCreditHistory(id:Int) : creditHistory
-        getCreditSummary(id: Int):creditSummary
-        getAcademicStory(id:Int): academicStory
-        getStudentSubjects(id: Int): [studentSubject]
+        aH_getAverages(id: Int) : aH_Averages
+        aH_getCareerCredits(code: Int) : aH_careerCredits
+        aH_getCreditHistory(id:Int) : aH_creditHistory
+        aH_getCreditSummary(id: Int):aH_creditSummary
+        aH_getAcademicStory(id:Int): aH_academicStory
+        aH_getStudentSubjects(id: Int): [aH_studentSubject]
     }
     # Mutations
     type Mutation {
-        updateCreditsSigned(id:Int, creditsSigned: creditsSignedInput): String
-        cancelCreditsLoss(id:Int, credits: creditsInput):String
-        cancelCreditsNoLoss(id:Int, credits: creditsInput):String
-        updateAverages(id:Int, averages:averagesInput):String
-        updateCreditsTaken(id:Int, creditsTaken:creditsTakenInput):String
-        newStudentSubjects(id:Int, studentSubject:studentSubjectInput):String
+        aH_updateCreditsSigned(id:Int, creditsSigned: aH_creditsSignedInput): String
+        aH_cancelCreditsLoss(id:Int, credits: aH_creditsInput):String
+        aH_cancelCreditsNoLoss(id:Int, credits: aH_creditsInput):String
+        aH_updateAverages(id:Int, averages: aH_averagesInput):String
+        aH_updateCreditsTaken(id:Int, creditsTaken: aH_creditsTakenInput):String
+        aH_newStudentSubjects(id:Int, studentSubject: aH_studentSubjectInput):String
     }
 `
 module.exports = { academicHistoryTypeDefs }
