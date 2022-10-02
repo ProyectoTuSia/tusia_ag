@@ -109,6 +109,20 @@ const addCoursedSubjectToStudent = async (subjectCode, studentUsername) => {
   return await requestpromisenative(options)
 }
 
+const addStudentToGroup = async (studentUsername, subjectCode, groupNumber) => {
+  const options = {
+    uri: 'http://' + host + ':8071/studenthassubjectgroup/',
+    method: 'POST',
+    body: {
+      subject_group_number: groupNumber,
+      subject_group_subject_code: subjectCode,
+      student_username: studentUsername
+    },
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 module.exports = {
   getAllStudents,
   getStudentByUsername,
@@ -120,5 +134,6 @@ module.exports = {
   getCareerSubjectsByTypology,
   createOrUpdateStudent,
   createOrUpdateCareer,
-  addCoursedSubjectToStudent
+  addCoursedSubjectToStudent,
+  addStudentToGroup
 }

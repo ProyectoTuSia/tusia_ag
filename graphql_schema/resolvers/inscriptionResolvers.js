@@ -39,6 +39,9 @@ const inscriptionResolvers = {
     },
     async addCoursedSubjectToStudent (_, { subjectCode, studentUsername }) {
       return await inscriptionAccess.addCoursedSubjectToStudent(subjectCode, studentUsername)
+    },
+    async addStudentToGroup (_, { studentUsername, subjectCode, groupNumber }) {
+      return await inscriptionAccess.addStudentToGroup(studentUsername, subjectCode, groupNumber)
     }
   }
 }

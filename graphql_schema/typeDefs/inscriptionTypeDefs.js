@@ -75,6 +75,8 @@ const inscriptionTypeDefs = gql`
         createOrUpdateCareer(career: CareerInput!): Career!
 
         addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!): String!
+
+        addStudentToGroup(studentUsername: String!, subjectCode: Int!, groupNumber: Int!): String!
     }
 `
 module.exports = { inscriptionTypeDefs }
