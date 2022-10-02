@@ -1,23 +1,23 @@
-const { loginAuthentication, getAllUsers, getUserById, createUser, updateUser, deleteUser } = require("../../MS_access/authenticationAccess");
+const { loginAuthentication, authGetAllUsers, authGetUserById, authCreateUser, authUpdateUser, authDeleteUser } = require("../../MS_access/authenticationAccess");
 
 const authenticationResolvers = {
   Query: {
-    async getAllUsers(parent, args, context)
+    async authGetAllUsers(parent, args, context)
     {
-      const users = await getAllUsers(token);
+      const users = await authGetAllUsers(token);
       return users;
     },
 
-    async getUserByID(parent, args, context)
+    async authGetUserByID(parent, args, context)
     {
       const { id } = args;
-      const user = await getUserById(id, token);
+      const user = await authGetUserById(id, token);
       return user;
     }
   },
 
   Mutation: {
-    async createUser(parent, { input }, context)
+    async authCreateUser(parent, { input }, context)
     {
       const {
         password,
@@ -139,18 +139,18 @@ const authenticationResolvers = {
         }
         };
 
-      const response = await createUser(newUser, token);
+      const response = await authCreateUser(newUser, token);
       return response;
     },
 
-    async deleteUser(parent, { id }, context) {
-      const status = await deleteUser(id, token);
+    async authDeleteUser(parent, { id }, context) {
+      const status = await authDeleteUser(id, token);
       return status;
     },
 
-    async updateUser(parent, { id, input }, context) {     
-      const response = await updateUser(id, input, token);
-      return "response";
+    async authUpdateUser(parent, { id, input }, context) {     
+      const response = await authUpdateUser(id, input, token);
+      return response;
     }
   }
 

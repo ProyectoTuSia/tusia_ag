@@ -2,14 +2,14 @@ const { gql } = require('apollo-server-express')
 
 const authenticationTypeDefs = gql`
     type Query {
-        getAllUsers: [User!]!
-        getUserByID(id: ID!): User
+        authGetAllUsers: [User!]!
+        authGetUserByID(id: ID!): User
     }
     
     type Mutation {
-        createUser(input: createUserInput!): User!
-        deleteUser(id: ID!): String!
-        updateUser(id: ID!, input: updateUserInput!): String!
+        authCreateUser(input: createUserInput!): User!
+        authDeleteUser(id: ID!): String!
+        authUpdateUser(id: ID!, input: updateUserInput!): String!
     }
 
     type User {

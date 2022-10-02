@@ -23,7 +23,7 @@ async function loginAuthentication(userCredentials) {
     }
 }
 
-async function getAllUsers(token) {
+async function authGetAllUsers(token) {
     try {
         const response = await fetch('http://localhost:8060/user/', {
             method: "GET",
@@ -46,7 +46,7 @@ async function getAllUsers(token) {
     }
 }
 
-async function getUserById(id, token) {
+async function authGetUserById(id, token) {
     try {
         const response = await fetch(`http://localhost:8060/user/${id}`, {
             method: "GET",
@@ -69,7 +69,7 @@ async function getUserById(id, token) {
     }
 }
 
-async function createUser(userDataToCreate, token) {
+async function authCreateUser(userDataToCreate, token) {
     try {
         const response = await fetch('http://localhost:8060/user/', {
             method: "POST",
@@ -93,7 +93,7 @@ async function createUser(userDataToCreate, token) {
     }
 }
 
-async function updateUser(id, userDataToUpdate, token) {
+async function authUpdateUser(id, userDataToUpdate, token) {
     try {
         const response = await fetch(`http://localhost:8060/user/${id}`, {
             method: "PUT",
@@ -117,7 +117,7 @@ async function updateUser(id, userDataToUpdate, token) {
     }
 }
 
-async function deleteUser(id, token) {
+async function authDeleteUser(id, token) {
     try {
         const response = await fetch(`http://localhost:8060/user/${id}`, {
             method: "DELETE",
@@ -140,4 +140,4 @@ async function deleteUser(id, token) {
     }
 }
 
-module.exports = { loginAuthentication, getAllUsers, getUserById, createUser, updateUser, deleteUser }
+module.exports = { loginAuthentication, authGetAllUsers, authGetUserById, authCreateUser, authUpdateUser, authDeleteUser }
