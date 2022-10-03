@@ -2,107 +2,107 @@ const { gql } = require('apollo-server-express')
 
 const inscriptionTypeDefs = gql`
     # TYPES
-    type Student {
+    type ins_Student {
         username : String!
         available_credits : Int!
     }
-    input StudentInput {
+    input ins_StudentInput {
         username : String!
         available_credits : Int!
     }
 
-    type Career {
+    type ins_Career {
         code: Int!
         name: String!
     }
-    input CareerInput {
+    input ins_CareerInput {
         code: Int!
         name: String!
     }
 
-    type Subject {
+    type ins_Subject {
         code: Int!
         name: String!
         credits: Int!
         faculty: String!
     }
     
-    type SubjectGroup {
+    type ins_SubjectGroup {
         number: Int!
         slots: Int!
-        subject: Subject!
+        subject: ins_Subject!
     }
 
-    type StudentHasCareer {
-        student: Student!
-        career: Career!
+    type ins_StudentHasCareer {
+        student: ins_Student!
+        career: ins_Career!
     }
 
-    type StudentCoursedSubject {
-        student: Student!
-        subject: Subject!
+    type ins_StudentCoursedSubject {
+        student: ins_Student!
+        subject: ins_Subject!
     }
 
-    type CareerHasSubject {
-        career: Career!
-        subject: Subject!
+    type ins_CareerHasSubject {
+        career: ins_Career!
+        subject: ins_Subject!
         typology: String!
     }
 
-    type StudentHasSubjectGroup {
-        student: Student!
-        subjectGroup: SubjectGroup!
+    type ins_StudentHasSubjectGroup {
+        student: ins_Student!
+        subjectGroup: ins_SubjectGroup!
     }
 
-    input StudentHasSubjectGroupInput {
+    input ins_StudentHasSubjectGroupInput {
         subject_group_number: Int!
         subject_group_subject_code: Int!
         student_username: String!
     }
 
-    type Schedule {
+    type ins_Schedule {
         id : Int!
         start_time : String!
         end_time : String!
         day : String!
     }
 
-    type SubjectGroupHasSchedule {
-        subjectGroup : SubjectGroup!
-        schedule : Schedule!
+    type ins_SubjectGroupHasSchedule {
+        subjectGroup : ins_SubjectGroup!
+        schedule : ins_Schedule!
     }
 
-    # Queries
+    # queries
     type Query {
-        getAllStudents : [Student]
-        getStudentByUsername(username:String!) : Student
+        ins_getAllStudents : [ins_Student]
+        ins_getStudentByUsername(username:String!) : ins_Student
 
-        getAllCareers : [Career]
+        ins_getAllCareers : [ins_Career]
 
-        getAllGroupsOfSubject(subjectCode: Int!) : [SubjectGroup]
-        getGroupOfSubject(subjectCode: Int!, groupNumber:Int!) : SubjectGroup
+        ins_getAllGroupsOfSubject(subjectCode: Int!) : [ins_SubjectGroup]
+        ins_getGroupOfSubject(subjectCode: Int!, groupNumber:Int!) : ins_SubjectGroup
 
-        getCareersOfStudent(username:String!) : [StudentHasCareer]
+        ins_getCareersOfStudent(username:String!) : [ins_StudentHasCareer]
 
-        getStudentCoursedSubjects(username:String!) : [StudentCoursedSubject]
+        ins_getStudentCoursedSubjects(username:String!) : [ins_StudentCoursedSubject]
 
-        getCareerSubjectsByTypology(careerCode: Int!, typology: String!) : [CareerHasSubject]
-        getStudentNotCoursedSubjectsInCareer(careerCode: Int!, username: String!) : [CareerHasSubject]
+        ins_getCareerSubjectsByTypology(careerCode: Int!, typology: String!) : [ins_CareerHasSubject]
+        ins_getStudentNotCoursedSubjectsInCareer(careerCode: Int!, username: String!) : [ins_CareerHasSubject]
 
-        getAllGroupsOfStudent(username: String!) : [StudentHasSubjectGroup]
+        ins_getAllGroupsOfStudent(username: String!) : [ins_StudentHasSubjectGroup]
 
-        getSchedulesOfGroup(subjectCode : Int!, groupNumber: Int!) : [SubjectGroupHasSchedule]
+        ins_getSchedulesOfGroup(subjectCode : Int!, groupNumber: Int!) : [ins_SubjectGroupHasSchedule]
     }
-    # Mutations
+    # mutations
     type Mutation {
-        createOrUpdateStudent(student: StudentInput!): Student!
+        ins_createOrUpdateStudent(student: ins_StudentInput!): ins_Student!
 
-        createOrUpdateCareer(career: CareerInput!): Career!
+        ins_createOrUpdateCareer(career: ins_CareerInput!): ins_Career!
 
-        addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!): String!
+        ins_addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!): String!
 
-        addStudentToGroups(list: [StudentHasSubjectGroupInput]): Boolean!
-        removeStudentFromGroups(list: [StudentHasSubjectGroupInput]): Boolean!
+        ins_addStudentToGroups(list: [ins_StudentHasSubjectGroupInput]): Boolean!
+        ins_removeStudentFromGroups(list: [ins_StudentHasSubjectGroupInput]): Boolean!
     }
 `
 module.exports = { inscriptionTypeDefs }
