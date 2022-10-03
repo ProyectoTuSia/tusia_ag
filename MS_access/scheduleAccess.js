@@ -6,13 +6,12 @@ const axios = require('axios')
 
 
 const getSchedule = async (userId) =>{
-    console.log(`the user is: ${userId}`)
     const url = `http://35.222.215.215:8000/consulta_horario/${userId}`
     try{
-        let data = await axios.get(url);
-        data = data.json()
-        console.log(`the first data is: ${data}`)
-        return data
+        let response = await axios.get(url);
+        scheduleData = response.data.data
+        console.log(response)
+        return scheduleData
 
     }catch(error){
         console.log(error)

@@ -15,14 +15,14 @@ const scheduleTypeDefs = gql`
     }
 
     input inputCourse {
+        courseId : Int!
         name : String!
         professor : String!
-        code : Int!
         credits : Int!
         building : String!
         classroom : String!
         group : Int!
-        typo: String
+        type: String
         timetable : String!
     }
 
@@ -46,9 +46,14 @@ const scheduleTypeDefs = gql`
         saturday : [inputCourse]
     }
 
-    type response {
+    type sc_responseData {
+        message : String
+    }
+
+    type sc_response {
         status : Int
         statusText : String
+        data : sc_responseData
     }
 
     
@@ -59,7 +64,7 @@ const scheduleTypeDefs = gql`
 
     # Mutations
     type Mutation {
-        sc_putSchedule( schedule : sc_inputSchedule! ) : response
+        sc_putSchedule( schedule : sc_inputSchedule! ) : sc_response
     }
 `
 module.exports = { scheduleTypeDefs }
