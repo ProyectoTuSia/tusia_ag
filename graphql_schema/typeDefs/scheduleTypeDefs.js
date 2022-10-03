@@ -27,32 +27,39 @@ const scheduleTypeDefs = gql`
     }
 
     type sc_Schedule {
-        userId : String!
-        monday : [Course]!
-        tuesday : [Course]!
-        wednesday : [Course]!
-        thursday : [Course]!
-        friday : [Course]!
-        saturday : [Course]!
+        userId : String
+        monday : [Course]
+        tuesday : [Course]
+        wednesday : [Course]
+        thursday : [Course]
+        friday : [Course]
+        saturday : [Course]
     }
 
     input sc_inputSchedule {
         userId : String!
-        monday : [Course]!
-        tuesday : [Course]!
-        wednesday : [Course]!
-        thursday : [Course]!
-        friday : [Course]!
-        saturday : [Course]!
+        monday : [inputCourse]
+        tuesday : [inputCourse]
+        wednesday : [inputCourse]
+        thursday : [inputCourse]
+        friday : [inputCourse]
+        saturday : [inputCourse]
+    }
+
+    type response {
+        status : Int
+        statusText : String
     }
 
     
     # Queries
-    sc_getSchedule(userId : String!) : Schedule!
+    type Query {
+        sc_getSchedule(userId : String!) : sc_Schedule!
+    }
 
     # Mutations
-    mutation {
-        sc_putSchedule( schedule : sc_inputSchedule! )
+    type Mutation {
+        sc_putSchedule( schedule : sc_inputSchedule! ) : response
     }
 `
 module.exports = { scheduleTypeDefs }
