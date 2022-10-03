@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 async function loginAuthentication(userCredentials) {
     try {
-        const response = await fetch('http://localhost:8060/user/login', {
+        const response = await fetch('http://35.208.124.181:8060/user/login', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -25,7 +25,7 @@ async function loginAuthentication(userCredentials) {
 
 async function authGetAllUsers(token) {
     try {
-        const response = await fetch('http://localhost:8060/user/', {
+        const response = await fetch('http://35.208.124.181:8060/user/', {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -48,7 +48,7 @@ async function authGetAllUsers(token) {
 
 async function authGetUserById(id, token) {
     try {
-        const response = await fetch(`http://localhost:8060/user/${id}`, {
+        const response = await fetch(`http://35.208.124.181:8060/user/${id}`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -71,7 +71,7 @@ async function authGetUserById(id, token) {
 
 async function authCreateUser(userDataToCreate, token) {
     try {
-        const response = await fetch('http://localhost:8060/user/', {
+        const response = await fetch('http://35.208.124.181:8060/user/', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -95,7 +95,7 @@ async function authCreateUser(userDataToCreate, token) {
 
 async function authUpdateUser(id, userDataToUpdate, token) {
     try {
-        const response = await fetch(`http://localhost:8060/user/${id}`, {
+        const response = await fetch(`http://35.208.124.181:8060/user/${id}`, {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -119,7 +119,7 @@ async function authUpdateUser(id, userDataToUpdate, token) {
 
 async function authDeleteUser(id, token) {
     try {
-        const response = await fetch(`http://localhost:8060/user/${id}`, {
+        const response = await fetch(`http://35.208.124.181:8060/user/${id}`, {
             method: "DELETE",
             headers: {
                 'Accept': 'application/json',

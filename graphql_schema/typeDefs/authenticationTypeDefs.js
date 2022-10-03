@@ -48,8 +48,8 @@ const authenticationTypeDefs = gql`
 
     type healthData {
         bloodType: String!
-        rHFactor: String!
-        ePS: String!
+        rhFactor: String!
+        eps: String!
     }
 
     type responsibleFatherData {
@@ -119,8 +119,8 @@ const authenticationTypeDefs = gql`
 
         #Health Data
         bloodType: String!
-        rHFactor: String!
-        ePS: String!
+        rhFactor: String!
+        eps: String!
 
         #Responsible Father Data
         nameResponsibleParentFather: String!
@@ -179,8 +179,8 @@ const authenticationTypeDefs = gql`
 
         #Health Data
         bloodType: String
-        rHFactor: String
-        ePS: String
+        rhFactor: String
+        eps: String
 
         #Responsible Father Data
         nameResponsibleParentFather: String
