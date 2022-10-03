@@ -54,6 +54,12 @@ const inscriptionTypeDefs = gql`
         subjectGroup: SubjectGroup!
     }
 
+    input StudentHasSubjectGroupInput {
+        subject_group_number: Int!
+        subject_group_subject_code: Int!
+        student_username: String!
+    }
+
     type Schedule {
         id : Int!
         start_time : String!
@@ -81,6 +87,7 @@ const inscriptionTypeDefs = gql`
         getStudentCoursedSubjects(username:String!) : [StudentCoursedSubject]
 
         getCareerSubjectsByTypology(careerCode: Int!, typology: String!) : [CareerHasSubject]
+        getStudentNotCoursedSubjectsInCareer(careerCode: Int!, username: String!) : [CareerHasSubject]
 
         getAllGroupsOfStudent(username: String!) : [StudentHasSubjectGroup]
 
@@ -94,7 +101,8 @@ const inscriptionTypeDefs = gql`
 
         addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!): String!
 
-        addStudentToGroup(studentUsername: String!, subjectCode: Int!, groupNumber: Int!): String!
+        addStudentToGroups(list: [StudentHasSubjectGroupInput]): Boolean!
+        removeStudentFromGroups(list: [StudentHasSubjectGroupInput]): Boolean!
     }
 `
 module.exports = { inscriptionTypeDefs }

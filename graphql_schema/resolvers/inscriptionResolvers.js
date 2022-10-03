@@ -27,6 +27,9 @@ const inscriptionResolvers = {
     async getCareerSubjectsByTypology (_, { careerCode, typology }) {
       return await inscriptionAccess.getCareerSubjectsByTypology(careerCode, typology)
     },
+    async getStudentNotCoursedSubjectsInCareer (_, { careerCode, username }) {
+      return await inscriptionAccess.getStudentNotCoursedSubjectsInCareer(careerCode, username)
+    },
     async getAllGroupsOfStudent (_, { username }) {
       return await inscriptionAccess.getAllGroupsOfStudent(username)
     },
@@ -46,8 +49,11 @@ const inscriptionResolvers = {
     async addCoursedSubjectToStudent (_, { subjectCode, studentUsername }) {
       return await inscriptionAccess.addCoursedSubjectToStudent(subjectCode, studentUsername)
     },
-    async addStudentToGroup (_, { studentUsername, subjectCode, groupNumber }) {
-      return await inscriptionAccess.addStudentToGroup(studentUsername, subjectCode, groupNumber)
+    async addStudentToGroups (_, { list }) {
+      return await inscriptionAccess.addStudentToGroups(list)
+    },
+    async removeStudentFromGroups (_, { list }) {
+      return await inscriptionAccess.removeStudentFromGroups(list)
     }
   }
 }

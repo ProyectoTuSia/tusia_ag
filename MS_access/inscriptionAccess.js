@@ -1,6 +1,6 @@
 // Manage REST communication with microservice
 const requestpromisenative = require('request-promise-native')
-const host = '34.133.154.193'
+const host = 'localhost'
 
 const getAllStudents = async () => {
   const options = {
@@ -70,6 +70,14 @@ const getCareerSubjectsByTypology = async (careerCode, typology) => {
   return await requestpromisenative(options)
 }
 
+const getStudentNotCoursedSubjectsInCareer = async (careerCode, username) => {
+  const options = {
+    uri: 'http://' + host + ':8071/careerhassubject/' + 'not/' + careerCode + '/' + username,
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 const getAllGroupsOfStudent = async (username) => {
   const options = {
     uri: 'http://' + host + ':8071/studenthassubjectgroup/' + username,
@@ -125,15 +133,21 @@ const addCoursedSubjectToStudent = async (subjectCode, studentUsername) => {
   return await requestpromisenative(options)
 }
 
-const addStudentToGroup = async (studentUsername, subjectCode, groupNumber) => {
+const addStudentToGroups = async (list) => {
   const options = {
     uri: 'http://' + host + ':8071/studenthassubjectgroup/',
     method: 'POST',
-    body: {
-      subject_group_number: groupNumber,
-      subject_group_subject_code: subjectCode,
-      student_username: studentUsername
-    },
+    body: list,
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
+const removeStudentFromGroups = async (list) => {
+  const options = {
+    uri: 'http://' + host + ':8071/studenthassubjectgroup/',
+    method: 'DELETE',
+    body: list,
     json: true
   }
   return await requestpromisenative(options)
@@ -148,10 +162,12 @@ module.exports = {
   getCareersOfStudent,
   getStudentCoursedSubjects,
   getCareerSubjectsByTypology,
+  getStudentNotCoursedSubjectsInCareer,
   getAllGroupsOfStudent,
   getSchedulesOfGroup,
   createOrUpdateStudent,
   createOrUpdateCareer,
   addCoursedSubjectToStudent,
-  addStudentToGroup
+  addStudentToGroups,
+  removeStudentFromGroups
 }
