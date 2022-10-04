@@ -6,7 +6,7 @@ const axios = require('axios')
 
 
 const getSchedule = async (userId) =>{
-    const url = `http://35.222.215.215:8000/consulta_horario/${userId}`
+    const url = `http://34.67.154.253:8000/consulta_horario/${userId}`
     try{
         let response = await axios.get(url);
         scheduleData = response.data.data
@@ -19,7 +19,7 @@ const getSchedule = async (userId) =>{
 }
 
 const putSchedule = async (scheduleData)=>{
-    const url = `http://35.222.215.215:8000/consulta_horario/${scheduleData.userId}`
+    const url = `http://34.67.154.253:8000/consulta_horario/${scheduleData.userId}`
     try{
         const data = await axios.put(url,scheduleData);
 
