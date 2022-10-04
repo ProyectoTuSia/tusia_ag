@@ -1,4 +1,5 @@
 const inscriptionAccess = require('../../MS_access/inscriptionAccess')
+const { getGroupById, createOrUpdateGroup } = require('../../MS_access/courseSearchAccess')
 
 const inscriptionResolvers = {
   // queries
@@ -50,7 +51,23 @@ const inscriptionResolvers = {
       return await inscriptionAccess.addCoursedSubjectToStudent(subjectCode, studentUsername)
     },
     async ins_addStudentToGroups (_, { list }) {
-      return await inscriptionAccess.addStudentToGroups(list)
+      const inscriptionStatus = await inscriptionAccess.addStudentToGroups(list)
+      if (inscriptionStatus) {
+        for (const course of list) {
+          console.log(course)
+          // Actualizar cupos del grupo
+          const courseInfo = await getGroupById(parseInt(course.subject_group_subject_code.toString() + course.subject_group_number.toString()))
+          console.log(courseInfo)
+          courseInfo.Slots = courseInfo.Slots - 1
+          await createOrUpdateGroup(courseInfo)
+          // Actualizar las notas 
+
+          // Agregar al horario
+
+          // Agregar a la historia académica
+        }
+      }
+      return inscriptionStatus
     },
     async ins_removeStudentFromGroups (_, { list }) {
       return await inscriptionAccess.removeStudentFromGroups(list)
