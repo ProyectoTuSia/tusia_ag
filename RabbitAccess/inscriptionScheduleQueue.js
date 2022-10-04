@@ -10,7 +10,7 @@ const createSchedule = ()=> {amqp.connect('amqp://localhost:5672', function(erro
       throw error1;
     }
     var queue = 'createScheduleQueue';
-    var msg = 'Hello mundooo';
+    var msg = 'Hello zzzz';
 
     channel.assertQueue(queue, {
       durable: false
