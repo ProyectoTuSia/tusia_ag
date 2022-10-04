@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const fetch = require('node-fetch');
 
 async function loginAuthentication(userCredentials) {
@@ -141,3 +142,6 @@ async function authDeleteUser(id, token) {
 }
 
 module.exports = { loginAuthentication, authGetAllUsers, authGetUserById, authCreateUser, authUpdateUser, authDeleteUser }
+=======
+// Manage REST communication with microservice
+>>>>>>> inscripcion

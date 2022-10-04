@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { response } = require("express")
 const requestPromiseNative = require("request-promise-native")
 const ip="34.135.171.161"
@@ -142,3 +143,6 @@ module.exports = {
     updateCreditsTaken,
     newStudentSubjects
 }
+=======
+// Manage REST communication with microservice
+>>>>>>> inscripcion

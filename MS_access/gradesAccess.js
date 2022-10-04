@@ -1,4 +1,5 @@
 // Manage REST communication with microservice
+<<<<<<< HEAD
 const fetch = require('node-fetch')
 const host = 'http://93.188.164.106:8086'
 
@@ -93,3 +94,5 @@ const gradesStudentInscriptionPetition = async (username, firstname, lastname, c
 }
 
 module.exports = { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition }
+=======
+>>>>>>> inscripcion

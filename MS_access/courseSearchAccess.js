@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const fetch = require('node-fetch')
 const requestpromisenative = require('request-promise-native')
 const host = 'localhost'
@@ -253,3 +254,6 @@ module.exports = {
   getTypeConditionsById,
   createOrUpdateGroup
 }
+=======
+// Manage REST communication with microservice
+>>>>>>> inscripcion
