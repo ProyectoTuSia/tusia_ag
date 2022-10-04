@@ -1,5 +1,6 @@
 const inscriptionAccess = require('../../MS_access/inscriptionAccess')
 const { getGroupById, createOrUpdateGroup } = require('../../MS_access/courseSearchAccess')
+const decoderToken = require('../../utils/decoderToken');
 
 const inscriptionResolvers = {
   // queries
@@ -48,9 +49,21 @@ const inscriptionResolvers = {
       return await inscriptionAccess.createOrUpdateCareer(career)
     },
     async ins_addCoursedSubjectToStudent (_, { subjectCode, studentUsername }) {
+      const { token } = list;
+      
+      if(decoderToken.getClaimsToken(token).role !== 'Estudiante') {
+        return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
+      }
+
       return await inscriptionAccess.addCoursedSubjectToStudent(subjectCode, studentUsername)
     },
     async ins_addStudentToGroups (_, { list }) {
+      const { token } = list;
+
+      if(decoderToken.getClaimsToken(token).role !== 'Estudiante') {
+        return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
+      }
+
       const inscriptionStatus = await inscriptionAccess.addStudentToGroups(list)
       if (inscriptionStatus) {
         for (const course of list) {
@@ -70,6 +83,12 @@ const inscriptionResolvers = {
       return inscriptionStatus
     },
     async ins_removeStudentFromGroups (_, { list }) {
+      const { token } = list;
+
+      if(decoderToken.getClaimsToken(token).role !== 'Estudiante') {
+        return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
+      }
+
       return await inscriptionAccess.removeStudentFromGroups(list)
     }
   }
