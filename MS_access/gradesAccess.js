@@ -92,4 +92,26 @@ const gradesStudentInscriptionPetition = async (username, firstname, lastname, c
     )
 }
 
-module.exports = { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition }
+const gradesStudentCancellationPetition = async (username, code, groupNumber) => {
+  const url = host + '/cancellation'
+  const body = JSON.stringify({
+    username,
+    code,
+    group_number: groupNumber
+  })
+  return await fetch(url, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body
+  })
+    .then(async (response) => {
+      return JSON.stringify(response.json())
+    }
+    ).catch(error => {
+      console.log(error)
+      return JSON.stringify(error)
+    }
+    )
+}
+
+module.exports = { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition , gradesStudentCancellationPetition}
