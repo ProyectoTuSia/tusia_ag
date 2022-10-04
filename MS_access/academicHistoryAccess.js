@@ -1,6 +1,5 @@
-const { response } = require('express')
 const requestPromiseNative = require('request-promise-native')
-const ip = '34.135.171.161'
+const ip = '34.67.125.65'
 
 // Manage REST communication with microservice
 const getAverages = async (id) => {
