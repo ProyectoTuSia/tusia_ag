@@ -7,8 +7,6 @@ const {
   authDeleteUser
 } = require('../../MS_access/authenticationAccess')
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVuYWwuZWR1LmNvIiwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJuYmYiOjE2NjQ4NDcyNDYsImV4cCI6MTY2NDg1MDg0NiwiaWF0IjoxNjY0ODQ3MjQ2fQ.bfturd-e91mD7Cm82Vgc3CMA7iVLF50Vf7XMjSUAUzY'
-
 const authenticationResolvers = {
   Query: {
     async authGetAllUsers (parent, args, context) {
