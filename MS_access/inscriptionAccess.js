@@ -1,6 +1,4 @@
 // Manage REST communication with microservice
-<<<<<<< HEAD
-=======
 const requestpromisenative = require('request-promise-native')
 const host = '34.133.154.193'
 
@@ -173,4 +171,3 @@ module.exports = {
   addStudentToGroups,
   removeStudentFromGroups
 }
->>>>>>> inscripcion

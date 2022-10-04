@@ -3,33 +3,28 @@ const axios = require('axios')
 
 // Manage REST communication with microservice
 
-
-
-const getSchedule = async (userId) =>{
-    const url = `http://35.222.215.215:8000/consulta_horario/${userId}`
-    try{
-        let response = await axios.get(url);
-        scheduleData = response.data.data
-        console.log(response)
-        return scheduleData
-
-    }catch(error){
-        console.log(error)
-    }
+const getSchedule = async (userId) => {
+  const url = `http://35.222.215.215:8000/consulta_horario/${userId}`
+  try {
+    const response = await axios.get(url)
+    const scheduleData = response.data.data
+    console.log(response)
+    return scheduleData
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-const putSchedule = async (scheduleData)=>{
-    const url = `http://35.222.215.215:8000/consulta_horario/${scheduleData.userId}`
-    try{
-        const data = await axios.put(url,scheduleData);
+const putSchedule = async (scheduleData) => {
+  const url = `http://35.222.215.215:8000/consulta_horario/${scheduleData.userId}`
+  try {
+    const data = await axios.put(url, scheduleData)
 
-        console.log(data)
-        return data
-
-    }catch(error){
-        console.log(error)
-    }
-
+    console.log(data)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 module.exports = { getSchedule, putSchedule }

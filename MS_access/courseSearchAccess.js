@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const fetch = require('node-fetch')
 const requestpromisenative = require('request-promise-native')
 const host = 'localhost'
@@ -221,7 +220,7 @@ const createOrUpdateGroup = async (group) => {
       Working_day: group.Working_day,
       Slots: group.Slots,
       Id_faculty: group.Id_faculty,
-      Id_subject:group.Id_subject,
+      Id_subject: group.Id_subject
     },
 
     json: true
@@ -254,6 +253,3 @@ module.exports = {
   getTypeConditionsById,
   createOrUpdateGroup
 }
-=======
-// Manage REST communication with microservice
->>>>>>> inscripcion
