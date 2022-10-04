@@ -4,25 +4,25 @@ const {
   authGetUserById,
   authCreateUser,
   authUpdateUser,
-  authDeleteUser,
-} = require("../../MS_access/authenticationAccess");
+  authDeleteUser
+} = require('../../MS_access/authenticationAccess')
 
 const authenticationResolvers = {
   Query: {
-    async authGetAllUsers(parent, args, context) {
-      const users = await authGetAllUsers(token);
-      return users;
+    async authGetAllUsers (parent, args, context) {
+      const users = await authGetAllUsers(token)
+      return users
     },
 
-    async authGetUserByID(parent, args, context) {
-      const { id } = args;
-      const user = await authGetUserById(id, token);
-      return user;
-    },
+    async authGetUserByID (parent, args, context) {
+      const { id } = args
+      const user = await authGetUserById(id, token)
+      return user
+    }
   },
 
   Mutation: {
-    async authCreateUser(parent, { input }, context) {
+    async authCreateUser (parent, { input }, context) {
       const {
         password,
         mail,
@@ -71,8 +71,8 @@ const authenticationResolvers = {
         postalCodeResidence,
         telephone,
 
-        militaryPassbook,
-      } = input;
+        militaryPassbook
+      } = input
 
       const newUser = {
         password,
@@ -88,7 +88,7 @@ const authenticationResolvers = {
           ethnicity,
           personalMail,
           mobileNumber,
-          landlineTelephone,
+          landlineTelephone
         },
 
         birthData: {
@@ -96,13 +96,13 @@ const authenticationResolvers = {
           countryBirth,
           departmentBirth,
           municipalityBirth,
-          nationality,
+          nationality
         },
 
         healthData: {
           bloodType,
           rhFactor,
-          eps,
+          eps
         },
 
         responsible: {
@@ -111,15 +111,15 @@ const authenticationResolvers = {
             firstSurname: firstSurnameFather,
             secondSurname: secondSurnameFather,
             documentType: documentTypeFather,
-            idNumber: idNumberFather,
+            idNumber: idNumberFather
           },
           responsibleMotherData: {
             nameResponsibleParent: nameResponsibleParentMother,
             firstSurname: firstSurnameMother,
             secondSurname: secondSurnameMother,
             documentType: documentTypeMother,
-            idNumber: idNumberMother,
-          },
+            idNumber: idNumberMother
+          }
         },
 
         originData: {
@@ -127,7 +127,7 @@ const authenticationResolvers = {
           municipality: municipalityOrigin,
           department: departmentOrigin,
           postalCode: postalCodeOrigin,
-          stratum,
+          stratum
         },
 
         residenceData: {
@@ -135,25 +135,25 @@ const authenticationResolvers = {
           municipality: municipalityResidence,
           department: departmentResidence,
           postalCode: postalCodeResidence,
-          telephone,
+          telephone
         },
 
         militarySituation: {
-          militaryPassbook,
-        },
-      };
-      
-      const response = await authCreateUser(newUser, token);
-      return response;
+          militaryPassbook
+        }
+      }
+
+      const response = await authCreateUser(newUser, token)
+      return response
     },
 
-    async authDeleteUser(parent, { id }, context) {
-      const status = await authDeleteUser(id, token);
-      return status;
+    async authDeleteUser (parent, { id }, context) {
+      const status = await authDeleteUser(id, token)
+      return status
     },
 
-    async authUpdateUser(parent, { id, input }, context) {
-      const userInDb = await authGetUserById(id, token);
+    async authUpdateUser (parent, { id, input }, context) {
+      const userInDb = await authGetUserById(id, token)
 
       const {
         password,
@@ -203,8 +203,8 @@ const authenticationResolvers = {
         postalCodeResidence,
         telephone,
 
-        militaryPassbook,
-      } = input;
+        militaryPassbook
+      } = input
 
       const userUpdated = {
         password,
@@ -220,7 +220,7 @@ const authenticationResolvers = {
           ethnicity,
           personalMail,
           mobileNumber,
-          landlineTelephone,
+          landlineTelephone
         },
 
         birthData: {
@@ -228,13 +228,13 @@ const authenticationResolvers = {
           countryBirth,
           departmentBirth,
           municipalityBirth,
-          nationality,
+          nationality
         },
 
         healthData: {
           bloodType,
           rhFactor,
-          eps,
+          eps
         },
 
         responsible: {
@@ -243,15 +243,15 @@ const authenticationResolvers = {
             firstSurname: firstSurnameFather,
             secondSurname: secondSurnameFather,
             documentType: documentTypeFather,
-            idNumber: idNumberFather,
+            idNumber: idNumberFather
           },
           responsibleMotherData: {
             nameResponsibleParent: nameResponsibleParentMother,
             firstSurname: firstSurnameMother,
             secondSurname: secondSurnameMother,
             documentType: documentTypeMother,
-            idNumber: idNumberMother,
-          },
+            idNumber: idNumberMother
+          }
         },
 
         originData: {
@@ -259,7 +259,7 @@ const authenticationResolvers = {
           municipality: municipalityOrigin,
           department: departmentOrigin,
           postalCode: postalCodeOrigin,
-          stratum,
+          stratum
         },
 
         residenceData: {
@@ -267,43 +267,43 @@ const authenticationResolvers = {
           municipality: municipalityResidence,
           department: departmentResidence,
           postalCode: postalCodeResidence,
-          telephone,
+          telephone
         },
 
         militarySituation: {
-          militaryPassbook,
-        },
-      };
+          militaryPassbook
+        }
+      }
 
-      userUpdated["password"] = userInDb["password"];
+      userUpdated.password = userInDb.password
 
-      for (let key in userUpdated) {
-        for (let data in userUpdated[key]) {
+      for (const key in userUpdated) {
+        for (const data in userUpdated[key]) {
           if (
             isNaN(data) &&
             userUpdated[key][data] === undefined &&
-            key !== "responsible"
+            key !== 'responsible'
           ) {
-            userUpdated[key][data] = userInDb[key][data];
+            userUpdated[key][data] = userInDb[key][data]
           }
         }
       }
 
-      for (let key in userUpdated["responsible"]) {
-        for (let data in userUpdated["responsible"][key]) {
+      for (const key in userUpdated.responsible) {
+        for (const data in userUpdated.responsible[key]) {
           if (
             isNaN(data) &&
-            userUpdated["responsible"][key][data] === undefined
+            userUpdated.responsible[key][data] === undefined
           ) {
-            userUpdated["responsible"][key][data] = userInDb["responsible"][key][data];
+            userUpdated.responsible[key][data] = userInDb.responsible[key][data]
           }
         }
       }
 
-      const response = await authUpdateUser(id, userUpdated, token);
-      return response;
-    },
-  },
-};
+      const response = await authUpdateUser(id, userUpdated, token)
+      return response
+    }
+  }
+}
 
-module.exports = { authenticationResolvers };
+module.exports = { authenticationResolvers }
