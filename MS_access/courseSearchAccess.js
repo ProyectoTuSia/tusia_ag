@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const requestpromisenative = require('request-promise-native')
-const host = 'localhost'
+const host = '35.208.191.153'
 const getCampus = async () => {
   const url = 'http://' + host + ':4325/models/campus/'
   return await fetch(url, {
@@ -208,8 +208,8 @@ const getTypeConditionsById = async (Id_types) => {
 
 const createOrUpdateGroup = async (group) => {
   const options = {
-    uri: 'http://' + host + ':4325/models/group/',
-    method: 'POST',
+    uri: 'http://' + host + `:4325/models/group/${group.Id_group}/`,
+    method: 'PUT',
     body: {
       Id_group: group.Id_group,
       Modality: group.Modality,
@@ -220,7 +220,8 @@ const createOrUpdateGroup = async (group) => {
       Working_day: group.Working_day,
       Slots: group.Slots,
       Id_faculty: group.Id_faculty,
-      Id_subject:group.Id_subject,
+      Id_subject: group.Id_subject,
+      Id_schedule: group.Id_schedule
     },
 
     json: true
