@@ -138,6 +138,7 @@ const academicHistoryTypeDefs = gql`
         aH_getCreditSummary(id: Int):aH_creditSummary
         aH_getAcademicStory(id:Int): aH_academicStory
         aH_getStudentSubjects(id: Int): [aH_studentSubject]
+        aH_getStoriesByUser(user:String):[aH_academicStory]
     }
     # Mutations
     type Mutation {

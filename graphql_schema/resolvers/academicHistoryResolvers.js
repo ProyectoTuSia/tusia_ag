@@ -21,6 +21,9 @@ const academicHistoryResolvers = {
     },
     async aH_getStudentSubjects (_, { id }) {
       return await aH.getStudentSubjects(id)
+    },
+    async aH_getStoriesByUser (_, { user }) {
+      return await aH.getStoriesByUser(user)
     }
 
   },
