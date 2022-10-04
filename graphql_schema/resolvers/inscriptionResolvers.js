@@ -50,8 +50,9 @@ const inscriptionResolvers = {
     },
     async ins_addCoursedSubjectToStudent (_, { subjectCode, studentUsername }) {
       const { token } = list;
-      
-      if(decoderToken.getClaimsToken(token).role !== 'Estudiante') {
+
+      if(decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+          (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
         return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
       }
 
@@ -60,7 +61,8 @@ const inscriptionResolvers = {
     async ins_addStudentToGroups (_, { list }) {
       const { token } = list;
 
-      if(decoderToken.getClaimsToken(token).role !== 'Estudiante') {
+      if(decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+          (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
         return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
       }
 
@@ -85,7 +87,8 @@ const inscriptionResolvers = {
     async ins_removeStudentFromGroups (_, { list }) {
       const { token } = list;
 
-      if(decoderToken.getClaimsToken(token).role !== 'Estudiante') {
+      if(decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+          (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
         return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
       }
 
