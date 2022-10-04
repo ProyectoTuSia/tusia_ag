@@ -62,7 +62,7 @@ const getCareerSubjectsByTypology = async (careerCode, typology) => {
   const options = {
     body: {
       career_code: careerCode,
-      typology: typology
+      typology
     },
     uri: 'http://' + host + ':8071/careerhassubject/',
     json: true
