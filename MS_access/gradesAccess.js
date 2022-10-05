@@ -114,4 +114,4 @@ const gradesStudentCancellationPetition = async (username, code, groupNumber) =>
     )
 }
 
-module.exports = { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition , gradesStudentCancellationPetition}
+module.exports = { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition, gradesStudentCancellationPetition }

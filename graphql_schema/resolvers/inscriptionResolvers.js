@@ -1,6 +1,7 @@
 const inscriptionAccess = require('../../MS_access/inscriptionAccess')
 const { getGroupById, createOrUpdateGroup } = require('../../MS_access/courseSearchAccess')
-const decoderToken = require('../../utils/decoderToken');
+const decoderToken = require('../../utils/decoderToken')
+const { gradesStudentInscriptionPetition } = require('../../MS_access/gradesAccess')
 
 const inscriptionResolvers = {
   // queries
@@ -49,21 +50,21 @@ const inscriptionResolvers = {
       return await inscriptionAccess.createOrUpdateCareer(career)
     },
     async ins_addCoursedSubjectToStudent (_, { subjectCode, studentUsername }) {
-      const { token } = list;
+      const { token } = list
 
-      if(decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+      if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
           (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
-        return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
+        return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
       }
 
       return await inscriptionAccess.addCoursedSubjectToStudent(subjectCode, studentUsername)
     },
     async ins_addStudentToGroups (_, { list }) {
-      const { token } = list;
+      const { token } = list
 
-      if(decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+      if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
           (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
-        return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
+        return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
       }
 
       const inscriptionStatus = await inscriptionAccess.addStudentToGroups(list)
@@ -75,8 +76,9 @@ const inscriptionResolvers = {
           console.log(courseInfo)
           courseInfo.Slots = courseInfo.Slots - 1
           await createOrUpdateGroup(courseInfo)
-          // Actualizar las notas 
-
+          // Actualizar las notas
+          
+          await gradesStudentInscriptionPetition(course.student_username, '', '', course.subject_group_subject_code, course.subject_group_number)
           // Agregar al horario
 
           // Agregar a la historia académica
@@ -85,11 +87,11 @@ const inscriptionResolvers = {
       return inscriptionStatus
     },
     async ins_removeStudentFromGroups (_, { list }) {
-      const { token } = list;
+      const { token } = list
 
-      if(decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+      if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
           (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
-        return 'Error 401: Unauthorized. Your role to perform this action must be "student".';
+        return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
       }
 
       return await inscriptionAccess.removeStudentFromGroups(list)
