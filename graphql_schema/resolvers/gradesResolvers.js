@@ -54,16 +54,15 @@ const gradesResolvers = {
     },
     async gm_consolidateGroupGrades (_, { courseCode, courseGroup }, context) {
       const studentGrades = await getGroupGradesPetition(courseCode, courseGroup)
-      console.log(studentGrades)
-      // let groupFinalGrades = {}
-      // for( let grade of a){
-      //   console.log(grade)
-      //   if(!c.hasOwnProperty(grade.name)){
-      //     c[grade.name] = [[grade.definitiva]]
-      //   } else
-      //   c[grade.name] = [ ...c[grade.name], [grade.definitiva]];
-      // }
-      return studentGrades.toString()
+      // console.log(studentGrades)
+      const groupFinalGrades = {}
+      for (const grade of studentGrades.results) {
+        if (!(groupFinalGrades.hasOwnProperty(grade.username))) {
+          groupFinalGrades[grade.username] = [[grade.grade, grade.weight.low]]
+        } else { groupFinalGrades[grade.username] = [...groupFinalGrades[grade.username], [grade.grade, grade.weight.low]] }
+      }
+      console.log(groupFinalGrades)
+      return groupFinalGrades.toString()
     }
   }
 
