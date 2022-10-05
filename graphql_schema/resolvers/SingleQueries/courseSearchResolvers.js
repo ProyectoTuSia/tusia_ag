@@ -1,4 +1,4 @@
-const courseSearchAccess = require('../../MS_access/courseSearchAccess')
+const courseSearchAccess = require('../../../MS_access/courseSearchAccess')
 const courseSearchResolvers = {
   // Queries
   Query: {

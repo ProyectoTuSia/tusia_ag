@@ -5,7 +5,7 @@ const {
   authCreateUser,
   authUpdateUser,
   authDeleteUser
-} = require('../../MS_access/authenticationAccess')
+} = require('../../../MS_access/authenticationAccess')
 
 function copyData (userInDb, userUpdated) {
   for (const key in userInDb) {

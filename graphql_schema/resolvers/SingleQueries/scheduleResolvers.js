@@ -1,4 +1,4 @@
-const { getSchedule, putSchedule } = require('../../MS_access/scheduleAccess.js')
+const { getSchedule, putSchedule } = require('../../../MS_access/scheduleAccess.js')
 
 const scheduleResolvers = {
   // Queries

@@ -1,4 +1,4 @@
-const { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition } = require('../../MS_access/gradesAccess.js')
+const { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition } = require('../../../MS_access/gradesAccess.js')
 
 const gradesResolvers = {
   // Queries

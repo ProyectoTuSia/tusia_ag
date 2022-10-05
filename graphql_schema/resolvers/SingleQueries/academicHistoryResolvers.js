@@ -1,5 +1,5 @@
 // import { getAverages } from "../../MS_access.js/academicHistoryAccess"
-const aH = require('../../MS_access/academicHistoryAccess')
+const aH = require('../../../MS_access/academicHistoryAccess')
 
 const academicHistoryResolvers = {
   // Queries
