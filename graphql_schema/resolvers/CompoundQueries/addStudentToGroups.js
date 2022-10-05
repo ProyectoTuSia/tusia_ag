@@ -1,5 +1,5 @@
 const inscriptionAccess = require('../../../MS_access/inscriptionAccess')
-const { getGroupById, createOrUpdateGroup,  getScheduleById, getPlaceById } = require('../../../MS_access/courseSearchAccess')
+const { getGroupById, createOrUpdateGroup, getScheduleById, getPlaceById } = require('../../../MS_access/courseSearchAccess')
 const decoderToken = require('../../../utils/decoderToken')
 const { gradesStudentInscriptionPetition } = require('../../../MS_access/gradesAccess')
 const { getStoriesByUser, updateCreditsSigned } = require('../../../MS_access/academicHistoryAccess')
