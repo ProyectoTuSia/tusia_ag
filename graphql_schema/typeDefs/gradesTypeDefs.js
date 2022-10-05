@@ -17,6 +17,13 @@ const gradesTypeDefs = gql`
         weight: Int!
         description: String!
     }
+
+    type gm_finalGrade {
+        student_username: String!
+        course_code: Int!
+        course_group: Int!
+        grade: Float!
+    }
     
     input gm_WeightInput {
         weight: Int!
@@ -25,9 +32,7 @@ const gradesTypeDefs = gql`
     
     input gm_WeightsInput {
         weights: [gm_WeightInput!]!        
-    }
-
-    
+    }    
     
     input gm_GradeInput{
         student_username: String! 
@@ -71,6 +76,8 @@ const gradesTypeDefs = gql`
 
         gm_updateStudentsGrades(courseCode: Int! , courseGroup: Int!, grades: gm_GradesInput!) : gm_UpdateStudentsGrades
 
+        # gm_consolidateGroupGrades(courseCode: Int! , courseGroup: Int!) : [gm_finalGrade!]!
+        gm_consolidateGroupGrades(courseCode: Int! , courseGroup: Int!) : String!
     }
 `
 module.exports = { gradesTypeDefs }

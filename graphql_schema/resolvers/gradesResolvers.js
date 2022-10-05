@@ -51,6 +51,19 @@ const gradesResolvers = {
     async gm_updateStudentsGrades (_, { courseCode, courseGroup, grades }, context) {
       const sendRequest = await updateStudentGradesPetition(courseCode, courseGroup, grades)
       return { status: sendRequest, courseCode, groupNumber: courseGroup, grades: grades.grades }
+    },
+    async gm_consolidateGroupGrades (_, { courseCode, courseGroup }, context) {
+      const studentGrades = await getGroupGradesPetition(courseCode, courseGroup)
+      console.log(studentGrades)
+      // let groupFinalGrades = {}
+      // for( let grade of a){
+      //   console.log(grade)
+      //   if(!c.hasOwnProperty(grade.name)){
+      //     c[grade.name] = [[grade.definitiva]]
+      //   } else
+      //   c[grade.name] = [ ...c[grade.name], [grade.definitiva]];
+      // }
+      return studentGrades.toString()
     }
   }
 

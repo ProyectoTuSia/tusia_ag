@@ -1,5 +1,5 @@
 const requestPromiseNative = require('request-promise-native')
-const ip = '34.67.125.65'
+const ip = '34.135.71.7'
 
 // Manage REST communication with microservice
 const getAverages = async (id) => {
@@ -36,6 +36,31 @@ const getStudentSubjects = async (id) => {
   const resp = await requestPromiseNative({ uri: url, json: true })
   return resp
 }
+
+const getStoriesByUser = async (data) => {
+  const url = `http://${ip}:8080/api/stories`
+  const resp = await requestPromiseNative({ uri: url, 
+    method: 'GET',
+    body: {
+      username:data,
+    },
+    json: true })
+  return resp
+}
+
+const getStoryByUserAndCareer = async (data) => {
+  const url = `http://${ip}:8080/api/academicStory/`
+  const resp = await requestPromiseNative({ uri: url, 
+    method: 'GET',
+    body: {
+      username:data.username,
+      career:data.career
+    },
+    json: true })
+  console.log(resp[0])
+  return resp[0]
+}
+
 const updateCreditsSigned = async (id, creditsSigned) => {
   const url = `http://${ip}:8080/api/creditsSigned/${id}`
   const resp = await requestPromiseNative({
@@ -162,5 +187,7 @@ module.exports = {
   cancelCreditsNoLoss,
   updateAverages,
   updateCreditsTaken,
-  newStudentSubjects
+  newStudentSubjects,
+  getStoryByUserAndCareer,
+  getStoriesByUser
 }

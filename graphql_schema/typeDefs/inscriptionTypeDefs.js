@@ -58,6 +58,15 @@ const inscriptionTypeDefs = gql`
         subject_group_number: Int!
         subject_group_subject_code: Int!
         student_username: String!
+        token: String!
+    }
+
+    input ins_StudentHasSubjectGroupCancellationInput {
+        subject_group_number: Int!
+        subject_group_subject_code: Int!
+        student_username: String!
+        token: String!
+        creditLoss: Boolean!
     }
 
     type ins_Schedule {
@@ -99,10 +108,10 @@ const inscriptionTypeDefs = gql`
 
         ins_createOrUpdateCareer(career: ins_CareerInput!): ins_Career!
 
-        ins_addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!): String!
+        ins_addCoursedSubjectToStudent(subjectCode: Int!, studentUsername: String!, token: String!): String!
 
         ins_addStudentToGroups(list: [ins_StudentHasSubjectGroupInput]): Boolean!
-        ins_removeStudentFromGroups(list: [ins_StudentHasSubjectGroupInput]): Boolean!
+        ins_removeStudentFromGroups(list: [ins_StudentHasSubjectGroupCancellationInput]): Boolean!
     }
 `
 module.exports = { inscriptionTypeDefs }

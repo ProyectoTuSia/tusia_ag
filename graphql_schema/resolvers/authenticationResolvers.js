@@ -7,6 +7,18 @@ const {
   authDeleteUser
 } = require('../../MS_access/authenticationAccess')
 
+function copyData (userInDb, userUpdated) {
+  for (const key in userInDb) {
+    if (userInDb.hasOwnProperty(key)) {
+      if (userUpdated[key] === undefined) {
+        userUpdated[key] = userInDb[key]
+      } else if (typeof userInDb[key] === 'object') {
+        copyData(userInDb[key], userUpdated[key])
+      }
+    }
+  }
+}
+
 const authenticationResolvers = {
   Query: {
     async authGetAllUsers (parent, args, context) {
@@ -275,31 +287,7 @@ const authenticationResolvers = {
         }
       }
 
-      userUpdated.password = userInDb.password
-
-      for (const key in userUpdated) {
-        for (const data in userUpdated[key]) {
-          if (
-            isNaN(data) &&
-            userUpdated[key][data] === undefined &&
-            key !== 'responsible'
-          ) {
-            userUpdated[key][data] = userInDb[key][data]
-          }
-        }
-      }
-
-      for (const key in userUpdated.responsible) {
-        for (const data in userUpdated.responsible[key]) {
-          if (
-            isNaN(data) &&
-            userUpdated.responsible[key][data] === undefined
-          ) {
-            userUpdated.responsible[key][data] = userInDb.responsible[key][data]
-          }
-        }
-      }
-
+      copyData(userInDb, userUpdated)
       const response = await authUpdateUser(id, userUpdated, token)
       return response
     }

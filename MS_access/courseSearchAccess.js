@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const requestpromisenative = require('request-promise-native')
-const host = '34.123.206.199'
+const host = '35.208.191.153'
 const getCampus = async () => {
   const url = 'http://' + host + ':4325/models/campus/'
   return await fetch(url, {
