@@ -1,7 +1,7 @@
 // Manage REST communication with microservice
 const requestpromisenative = require('request-promise-native')
 
-const host = '34.133.154.193'
+const host = '34.66.232.149'
 
 const getAllStudents = async () => {
   const options = {
@@ -122,8 +122,6 @@ const createOrUpdateCareer = async (career) => {
 }
 
 const addCoursedSubjectToStudent = async (subjectCode, studentUsername, token) => {
-
-
   const options = {
     uri: 'http://' + host + ':8071/studentcoursedsubject/',
     method: 'POST',
@@ -137,8 +135,6 @@ const addCoursedSubjectToStudent = async (subjectCode, studentUsername, token) =
 }
 
 const addStudentToGroups = async (list) => {
-
-
   const options = {
     uri: 'http://' + host + ':8071/studenthassubjectgroup/',
     method: 'POST',
@@ -153,6 +149,15 @@ const removeStudentFromGroups = async (list) => {
     uri: 'http://' + host + ':8071/studenthassubjectgroup/',
     method: 'DELETE',
     body: list,
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
+const getSubjectOfCareer = async (careerCode, courseCode) => {
+  const options = {
+    uri: 'http://' + host + `:8071/careerhassubject/${careerCode}/${courseCode}`,
+    method: 'GET',
     json: true
   }
   return await requestpromisenative(options)
@@ -174,5 +179,6 @@ module.exports = {
   createOrUpdateCareer,
   addCoursedSubjectToStudent,
   addStudentToGroups,
-  removeStudentFromGroups
+  removeStudentFromGroups,
+  getSubjectOfCareer
 }

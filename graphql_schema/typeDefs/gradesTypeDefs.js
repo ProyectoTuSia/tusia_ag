@@ -71,6 +71,7 @@ const gradesTypeDefs = gql`
 
         gm_updateStudentsGrades(courseCode: Int! , courseGroup: Int!, grades: gm_GradesInput!) : gm_UpdateStudentsGrades
 
+        
     }
 `
 module.exports = { gradesTypeDefs }
