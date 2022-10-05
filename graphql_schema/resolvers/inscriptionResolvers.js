@@ -77,10 +77,8 @@ const inscriptionResolvers = {
           courseInfo.Slots = courseInfo.Slots - 1
           await createOrUpdateGroup(courseInfo)
           // Actualizar las notas
-          
           await gradesStudentInscriptionPetition(course.student_username, '', '', course.subject_group_subject_code, course.subject_group_number)
           // Agregar al horario
-
           // Agregar a la historia académica
         }
       }
