@@ -1,7 +1,7 @@
 const amqp = require('amqplib/callback_api');
 
-
-const createSchedule = ()=> {amqp.connect('amqp://localhost:5672', function(error0, connection) {
+// this function should receive the body of th schedule
+const createSchedule = ()=> {amqp.connect('amqp://146.148.79.102:5672', function(error0, connection) {
   if (error0) {
     throw error0;
   }
@@ -10,7 +10,8 @@ const createSchedule = ()=> {amqp.connect('amqp://localhost:5672', function(erro
       throw error1;
     }
     var queue = 'createScheduleQueue';
-    var msg = 'Hello zzzz';
+    // the schedule body
+    var msg = 'Hello zzzz'; 
 
     channel.assertQueue(queue, {
       durable: false
