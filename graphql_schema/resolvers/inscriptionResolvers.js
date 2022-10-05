@@ -87,12 +87,10 @@ const inscriptionResolvers = {
         for (const course of list) {
           // Actualizar cupos del grupo
           const courseInfo = await getGroupById(parseInt(course.subject_group_subject_code.toString() + course.subject_group_number.toString()))
-          console.log(courseInfo)
           courseInfo.Slots = courseInfo.Slots - 1
           await createOrUpdateGroup(courseInfo)
           // Actualizar las notas
           const userBasicInfo = await authGetUserById('a52252c8-b3b5-44ba-9304-5c3ef39de89b', token)
-          console.log(userBasicInfo)
           await gradesStudentInscriptionPetition(course.student_username, userBasicInfo.basicData.fullName, userBasicInfo.basicData.fullName, course.subject_group_subject_code, course.subject_group_number)
           // Agregar al horario
           // Agregar a la historia académica
