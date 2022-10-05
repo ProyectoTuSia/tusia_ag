@@ -61,8 +61,12 @@ const gradesResolvers = {
           groupFinalGrades[grade.username] = [[grade.grade, grade.weight.low]]
         } else { groupFinalGrades[grade.username] = [...groupFinalGrades[grade.username], [grade.grade, grade.weight.low]] }
       }
+      for (const student of Object.keys(groupFinalGrades)) {
+        console.log(student)
+        groupFinalGrades[student] = groupFinalGrades[student].reduce((prev, curr) => prev + (curr[0] * curr[1] / 100), 0)
+      }
       console.log(groupFinalGrades)
-      return groupFinalGrades.toString()
+      return Object.keys(groupFinalGrades).toString() + " " + Object.values(groupFinalGrades).toString()
     }
   }
 
