@@ -9,9 +9,9 @@ const createSchedule = ()=> {amqp.connect('amqp://146.148.79.102:5672', function
     if (error1) {
       throw error1;
     }
-    var queue = 'createScheduleQueue';
+    let queue = 'createScheduleQueue';
     // the schedule body
-    var msg = 'Hello zzzz'; 
+    let msg = 'Hello zzzz'; 
 
     channel.assertQueue(queue, {
       durable: false
