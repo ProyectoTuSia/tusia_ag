@@ -23,6 +23,7 @@ const removeStudentFromGroupsResolver = {
       const career = academicHistory[0].career_code
       const idStory = academicHistory[0].id
       let currentSchedule  =  await getSchedule(list[0].student_username)
+      delete currentSchedule._id
       
       const cancellationStatus = await inscriptionAccess.removeStudentFromGroups(list)
       const cancellationGroupsByTypology = {
@@ -54,6 +55,7 @@ const removeStudentFromGroupsResolver = {
             console.log(id)
             const scheduleInfo = await getScheduleById(id)
             currentSchedule[scheduleInfo.day_name] = currentSchedule[scheduleInfo.day_name].filter((courseToDelete)=>{
+              console.log("from filter: "+ courseToDelete)
               return courseToDelete.courseId !== course.subject_group_subject_code
             })
             console.log(currentSchedule) 
@@ -62,6 +64,7 @@ const removeStudentFromGroupsResolver = {
         }
         currentSchedule = JSON.stringify(currentSchedule)
         createSchedule.createSchedule(currentSchedule)
+
         cancellationGroupsByTypology.total = Object.keys(cancellationGroupsByTypology).reduce((previous, key) => { return previous + cancellationGroupsByTypology[key] }, 0)
 
         creditLoss ? await cancelCreditsLoss(idStory, cancellationGroupsByTypology) : await cancelCreditsNoLoss(idStory, cancellationGroupsByTypology)
