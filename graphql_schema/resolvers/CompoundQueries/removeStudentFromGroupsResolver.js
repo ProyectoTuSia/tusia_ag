@@ -1,23 +1,29 @@
 const inscriptionAccess = require('../../../MS_access/inscriptionAccess')
-const { getGroupById, createOrUpdateGroup } = require('../../../MS_access/courseSearchAccess')
+const { getGroupById, createOrUpdateGroup, getScheduleById } = require('../../../MS_access/courseSearchAccess')
 const decoderToken = require('../../../utils/decoderToken')
 const { gradesStudentCancellationPetition } = require('../../../MS_access/gradesAccess')
 const { getStoriesByUser, cancelCreditsLoss, cancelCreditsNoLoss } = require('../../../MS_access/academicHistoryAccess')
+const { getSchedule } = require('../../../MS_access/scheduleAccess')
+const createSchedule = require('../../../RabbitAccess/inscriptionScheduleQueue')
+
+
 
 const removeStudentFromGroupsResolver = {
   Mutation: {
     async ins_removeStudentFromGroups (_, { list }) {
-      const { token } = list[0]
+      // const { token } = list[0]
       const { creditLoss } = list[0]
 
-      if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
-                (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
-        return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
-      }
-
+      // if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+      //           (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
+      //   return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
+      // }
+      
       const academicHistory = list.length > 0 ? await getStoriesByUser(list[0].student_username) : [{ career_code: '' }]
       const career = academicHistory[0].career_code
       const idStory = academicHistory[0].id
+      let currentSchedule  =  await getSchedule(list[0].student_username)
+      
       const cancellationStatus = await inscriptionAccess.removeStudentFromGroups(list)
       const cancellationGroupsByTypology = {
         fundamentacion_obligatoria: 0,
@@ -43,7 +49,19 @@ const removeStudentFromGroupsResolver = {
           const subjectInformation = await inscriptionAccess.getSubjectOfCareer(career, course.subject_group_subject_code)
           const typology = subjectInformation.typology.replace(' ', '_')
           cancellationGroupsByTypology[typology] = cancellationGroupsByTypology[typology] + subjectInformation.subject.credits
+
+          for (const id of courseInfo.Id_schedule) {
+            console.log(id)
+            const scheduleInfo = await getScheduleById(id)
+            currentSchedule[scheduleInfo.day_name] = currentSchedule[scheduleInfo.day_name].filter((courseToDelete)=>{
+              return courseToDelete.courseId !== course.subject_group_subject_code
+            })
+            console.log(currentSchedule) 
+          }
+
         }
+        currentSchedule = JSON.stringify(currentSchedule)
+        createSchedule.createSchedule(currentSchedule)
         cancellationGroupsByTypology.total = Object.keys(cancellationGroupsByTypology).reduce((previous, key) => { return previous + cancellationGroupsByTypology[key] }, 0)
 
         creditLoss ? await cancelCreditsLoss(idStory, cancellationGroupsByTypology) : await cancelCreditsNoLoss(idStory, cancellationGroupsByTypology)

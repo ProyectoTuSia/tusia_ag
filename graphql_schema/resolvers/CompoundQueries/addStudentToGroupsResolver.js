@@ -11,10 +11,10 @@ const addStudentToGroupsResolver = {
     async ins_addStudentToGroups (_, { list }) {
     // const { token } = list[0]
 
-      // if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
-      //     (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
-      //   return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
-      // }
+    //   if (decoderToken.getClaimsToken(token).role !== 'Estudiante' ||
+    //       (Date.now() >= decoderToken.getClaimsToken(token).exp * 1000)) {
+    //     return 'Error 401: Unauthorized. Your role to perform this action must be "student".'
+    //   }
       console.log(list[0].student_username)
       const academicHistory = list.length > 0 ? await getStoriesByUser(list[0].student_username) : [{ career_code: '' }]
       const career = academicHistory[0].career_code
@@ -52,7 +52,7 @@ const addStudentToGroupsResolver = {
           // Actualizar las notas
           // const userBasicInfo = await authGetUserById('a52252c8-b3b5-44ba-9304-5c3ef39de89b', token)
           // await gradesStudentInscriptionPetition(course.student_username, userBasicInfo.basicData.fullName, userBasicInfo.basicData.fullName, course.subject_group_subject_code, course.subject_group_number)
-
+          await gradesStudentInscriptionPetition(course.student_username, "santiango", "camargo rodriguez", course.subject_group_subject_code, course.subject_group_number)
           // Agregar a la historia académica
           const subjectInformation = await inscriptionAccess.getSubjectOfCareer(career, course.subject_group_subject_code)
           const typology = subjectInformation.typology.replace(' ', '_') + '_signed'

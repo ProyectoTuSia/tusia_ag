@@ -4,7 +4,7 @@ const axios = require('axios')
 // Manage REST communication with microservice
 
 const getSchedule = async (userId) => {
-  const url = `http://35.193.149.130:8000/consulta_horario/${userId}`
+  const url = `http://34.135.208.130:8000/consulta_horario/${userId}`
   try {
     const response = await axios.get(url)
     const scheduleData = response.data.data
@@ -16,7 +16,7 @@ const getSchedule = async (userId) => {
 }
 
 const putSchedule = async (scheduleData) => {
-  const url = `http://35.193.149.130:8000/consulta_horario/${scheduleData.userId}`
+  const url = `http://34.135.208.130:8000/consulta_horario/${scheduleData.userId}`
   try {
     const data = await axios.put(url, scheduleData)
 
