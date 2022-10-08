@@ -22,19 +22,35 @@ function copyData (userInDb, userUpdated) {
 const authenticationResolvers = {
   Query: {
     async authGetAllUsers (parent, args, context) {
+      const { token } = args
+
       const users = await authGetAllUsers(token)
       return users
     },
 
     async authGetUserByID (parent, args, context) {
-      const { id } = args
+      const { id, token } = args
       const user = await authGetUserById(id, token)
       return user
     }
   },
 
   Mutation: {
-    async authCreateUser (parent, { input }, context) {
+    async authLogin (parent, args, context) {
+      const { email, password } = args
+      const userCredentials = {
+        password,
+        basicData: {
+          mail: email
+        }
+      }
+
+      const token = await loginAuthentication(userCredentials)
+
+      return token
+    },
+
+    async authCreateUser (parent, { input, token }, context) {
       const {
         password,
         mail,
@@ -159,12 +175,12 @@ const authenticationResolvers = {
       return response
     },
 
-    async authDeleteUser (parent, { id }, context) {
+    async authDeleteUser (parent, { id, token }, context) {
       const status = await authDeleteUser(id, token)
       return status
     },
 
-    async authUpdateUser (parent, { id, input }, context) {
+    async authUpdateUser (parent, { id, input, token }, context) {
       const userInDb = await authGetUserById(id, token)
 
       const {
