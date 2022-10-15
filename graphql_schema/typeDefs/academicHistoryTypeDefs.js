@@ -78,6 +78,8 @@ const academicHistoryTypeDefs = gql`
         period: String
         grade: Float
         outcome: String
+        name:String
+        credits:Int
     }
     input aH_creditsSignedInput{
         fundamentacion_obligatoria_signed:Int
