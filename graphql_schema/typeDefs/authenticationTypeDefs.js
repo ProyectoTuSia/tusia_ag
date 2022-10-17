@@ -4,10 +4,10 @@ const authenticationTypeDefs = gql`
     type Query {
         authGetAllUsers(token: String!): [User!]!
         authGetUserByID(id: ID!, token: String!): User
+        authLogin(email: String!, password: String!): String!
     }
     
     type Mutation {
-        authLogin(email: String!, password: String!): String!
         authCreateUser(input: createUserInput!, token: String!): User!
         authDeleteUser(id: ID!, token: String!): String!
         authUpdateUser(id: ID!, input: updateUserInput!, token: String!): String!

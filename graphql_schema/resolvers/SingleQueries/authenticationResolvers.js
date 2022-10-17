@@ -32,10 +32,8 @@ const authenticationResolvers = {
       const { id, token } = args
       const user = await authGetUserById(id, token)
       return user
-    }
-  },
+    },
 
-  Mutation: {
     async authLogin (parent, args, context) {
       const { email, password } = args
       const userCredentials = {
@@ -48,8 +46,10 @@ const authenticationResolvers = {
       const token = await loginAuthentication(userCredentials)
 
       return token
-    },
+    }
+  },
 
+  Mutation: {
     async authCreateUser (parent, { input, token }, context) {
       const {
         password,
