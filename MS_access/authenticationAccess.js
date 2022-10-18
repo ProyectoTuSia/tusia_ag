@@ -11,8 +11,12 @@ async function loginAuthentication (userCredentials) {
       body: JSON.stringify(userCredentials)
     })
 
-    if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`)
+    if (response.status === 404) {
+      return 'User not found'
+    }
+
+    if (response.status === 400) {
+      return 'Wrong password'
     }
 
     const result = await response.json()
