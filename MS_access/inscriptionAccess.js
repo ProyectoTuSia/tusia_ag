@@ -1,7 +1,7 @@
 // Manage REST communication with microservice
 const requestpromisenative = require('request-promise-native')
 
-const host = '34.66.232.149'
+const host = '35.239.209.74'
 
 const getAllStudents = async () => {
   const options = {
