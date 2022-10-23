@@ -26,6 +26,38 @@ const getGradeWeightsPetition = async (courseCode, courseGroup) => {
     ).catch(error => console.log(error))
 }
 
+const getAllProfessorCourses = async ( professorUsername ) => {
+  const url = host + `/courses/${professorUsername}`
+  return await fetch(url, {
+    method: 'GET'
+  })
+    .then(async (response) => {
+      const result = response.json()
+      return result
+    }
+    ).catch(error => {
+      console.log(error)
+      return JSON.stringify(error)
+    }
+    )
+}
+
+const getAllCourses = async () => {
+  const url = host + `/courses`
+  return await fetch(url, {
+    method: 'GET'
+  })
+    .then(async (response) => {
+      const result = response.json()
+      return result
+    }
+    ).catch(error => {
+      console.log(error)
+      return JSON.stringify(error)
+    }
+    )
+}
+
 const updateGradeWeightsPetition = async (courseCode, courseGroup, weights) => {
   const url = host + '/grades/updateWeights'
   const body = JSON.stringify({
@@ -114,4 +146,4 @@ const gradesStudentCancellationPetition = async (username, code, groupNumber) =>
     )
 }
 
-module.exports = { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition, gradesStudentCancellationPetition }
+module.exports = { getAllCourses,getAllProfessorCourses, getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, gradesStudentInscriptionPetition, gradesStudentCancellationPetition }

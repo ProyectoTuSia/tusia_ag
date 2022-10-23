@@ -4,11 +4,19 @@ const gradesTypeDefs = gql`
     # TYPES
     type gm_Grade {
         course_code: Int!
-        group_code: Int!
+        course_group: Int!
         username : String!
         value: Float!
         description: String!
         weight: Int!
+    }
+
+    type gm_Group {
+        professorFullName: String
+        professorUsername : String
+        courseCode : Int!
+        courseName : String!
+        groupNumber : Int!
     }
 
     type gm_Weight {
@@ -67,6 +75,10 @@ const gradesTypeDefs = gql`
         gm_getGroupWeights(courseCode: Int! , groupCode: Int!): [gm_Weight]
 
         gm_getStudentGradesInGroup(courseCode: Int! , groupCode: Int!, username: String!): [gm_Grade]
+
+        gm_getProfessorGroups(professorUsername: String!) : [gm_Group]
+
+        gm_getAllCourses : [gm_Group]
 
     }
 

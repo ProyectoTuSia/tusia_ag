@@ -1,4 +1,4 @@
-const { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition } = require('../../../MS_access/gradesAccess.js')
+const { getGroupGradesPetition, updateGradeWeightsPetition, updateStudentGradesPetition, getGradeWeightsPetition, getAllProfessorCourses, getAllCourses } = require('../../../MS_access/gradesAccess.js')
 
 const gradesResolvers = {
   // Queries
@@ -11,7 +11,6 @@ const gradesResolvers = {
         delete Object.assign(grade, { value: grade.grade }).grade
         return grade
       })
-
       return retrievedGrades
     },
     async gm_getGroupWeights (parent, args, context, info) {
@@ -26,7 +25,6 @@ const gradesResolvers = {
         return { course_code: courseCode, course_group: courseGroup, description, weight }
       })
       console.log(dedup)
-
       return dedup
     },
     async gm_getStudentGradesInGroup (parent, args, context, info) {
@@ -39,6 +37,30 @@ const gradesResolvers = {
       retrievedGrades = retrievedGrades.filter(grade => grade.username === args.username)
 
       return retrievedGrades
+    },
+    async gm_getProfessorGroups (parent, args, context, info) {
+      let courses = await getAllProfessorCourses(args.professorUsername)
+      courses = courses.results
+      courses.map((group) => {
+        group.courseCode = group.courseCode.low
+        group.groupNumber = group.groupNumber.low
+        return group
+      })
+      return courses
+    },
+    async gm_getAllCourses (parent, args, context, info) {
+      let courses = await getAllCourses()
+      courses = courses.results
+      courses.map((group) => {
+        group.courseCode = group.courseCode.low
+        group.groupNumber = group.groupNumber.low
+        return group
+      })
+      const dedup = [...new Set(courses.map(m => `${m.courseCode}:${m.name}:${m.groupNumber}`))].map(m => {
+        const [courseCode, name , groupNumber] = m.split(':').map(n => n )
+        return { courseCode, courseName: name , groupNumber }
+      })
+      return dedup
     }
   },
   // Mutations
