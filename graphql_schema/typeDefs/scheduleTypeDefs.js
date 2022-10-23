@@ -10,7 +10,7 @@ const scheduleTypeDefs = gql`
         building : String!
         classroom : String!
         group : Int!
-        typo: String
+        type: String
         timetable : String!
     }
 
