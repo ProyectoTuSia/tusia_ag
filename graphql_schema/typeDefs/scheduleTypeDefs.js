@@ -5,7 +5,7 @@ const scheduleTypeDefs = gql`
     type Course {
         name : String!
         professor : String!
-        code : Int!
+        courseId : Int!
         credits : Int!
         building : String!
         classroom : String!
