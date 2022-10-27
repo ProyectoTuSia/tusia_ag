@@ -206,6 +206,14 @@ const getTypeConditionsById = async (Id_types) => {
   return await requestpromisenative(options)
 }
 
+const getGroupBySubject = async (Id_subject) => {
+  const options = {
+    uri: 'http://' + host + ':4325/models/GroupsforSubjects/?Id_subject=' + Id_subject,
+    json: true
+  }
+  return await requestpromisenative(options)
+}
+
 const createOrUpdateGroup = async (group) => {
   const options = {
     uri: 'http://' + host + `:4325/models/group/${group.Id_group}/`,
@@ -252,5 +260,6 @@ module.exports = {
   getSubjectsconditionsById,
   getTypeConditions,
   getTypeConditionsById,
+  getGroupBySubject,
   createOrUpdateGroup
 }
