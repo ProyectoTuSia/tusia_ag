@@ -78,6 +78,9 @@ const courseSearchResolvers = {
     },
     async getTypeConditionsById (_, { Id_types }) {
       return await courseSearchAccess.getTypeConditionsById(Id_types)
+    },
+    async getGroupBySubject (_, {Id_subject}) {
+      return await courseSearchAccess.getGroupBySubject(Id_subject)
     }
   // Mutations
   },
