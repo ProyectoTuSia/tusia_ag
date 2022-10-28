@@ -35,7 +35,7 @@ const courseSearchTypeDefs = gql`
     }
 
     type Group {
-        Id_group : Int!
+        Id_group : Int
         Modality : String!
         Teacher : String!
         Date_start : String!
@@ -97,6 +97,11 @@ const courseSearchTypeDefs = gql`
         Description : String!
     }
 
+    type TypeConditions {
+        Id_types : String!
+        Description : String!
+    }
+
     # query
     type Query {
         getCampus: [Campus]
@@ -121,6 +126,7 @@ const courseSearchTypeDefs = gql`
         getSubjectsconditionsById(Id_Subjectconditions:Int!) : Subjectsconditions
         getTypeConditions: [Typesconditions]
         getTypeConditionsById(Id_types:String!) : Typesconditions
+        getGroupBySubject(Id_subject:Int!): [Group]
     }
     # Mutations
     type Mutation {
