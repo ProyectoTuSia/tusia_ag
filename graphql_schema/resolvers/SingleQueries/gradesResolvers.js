@@ -8,6 +8,9 @@ const gradesResolvers = {
       retrievedGrades = retrievedGrades.results
       retrievedGrades.map((grade) => {
         grade.weight = grade.weight.low
+        if (grade.value.low) {
+          grade.value = grade.value.low
+        }
         delete Object.assign(grade, { value: grade.grade }).grade
         return grade
       })
@@ -57,8 +60,8 @@ const gradesResolvers = {
         return group
       })
       const dedup = [...new Set(courses.map(m => `${m.courseCode}:${m.name}:${m.groupNumber}`))].map(m => {
-        const [courseCode, name , groupNumber] = m.split(':').map(n => n )
-        return { courseCode, courseName: name , groupNumber }
+        const [courseCode, name, groupNumber] = m.split(':').map(n => n)
+        return { courseCode, courseName: name, groupNumber }
       })
       return dedup
     }
