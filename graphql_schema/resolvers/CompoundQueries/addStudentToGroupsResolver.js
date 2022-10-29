@@ -75,13 +75,13 @@ const addStudentToGroupsResolver = {
             scheduleCourse.building = placeInfo.Place_nametower
             scheduleCourse.classroom = placeInfo.Place_numbersalon
 
-            jsonSchedule[scheduleInfo.day_name].push(scheduleCourse)
+            jsonSchedule[(scheduleInfo.day_name).toLowerCase()].push(scheduleCourse)
           }
         }
         jsonSchedule = JSON.stringify(jsonSchedule)
         console.log(jsonSchedule)
         createSchedule.createSchedule(jsonSchedule)
-
+        
         inscriptionGroupsByTypology.total_signed = Object.keys(inscriptionGroupsByTypology).reduce((previous, key) => { return previous + inscriptionGroupsByTypology[key] }, 0)
         await updateCreditsSigned(idStory, inscriptionGroupsByTypology)
       }

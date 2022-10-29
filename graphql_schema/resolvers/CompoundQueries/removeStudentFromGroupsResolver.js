@@ -54,13 +54,12 @@ const removeStudentFromGroupsResolver = {
           for (const id of courseInfo.Id_schedule) {
             console.log(id)
             const scheduleInfo = await getScheduleById(id)
-            currentSchedule[scheduleInfo.day_name] = currentSchedule[scheduleInfo.day_name].filter((courseToDelete)=>{
+            currentSchedule[(scheduleInfo.day_name).toLowerCase()] = currentSchedule[(scheduleInfo.day_name).toLowerCase()].filter((courseToDelete)=>{
               console.log("from filter: "+ courseToDelete)
               return courseToDelete.courseId !== course.subject_group_subject_code
             })
             console.log(currentSchedule) 
           }
-
         }
         currentSchedule = JSON.stringify(currentSchedule)
         createSchedule.createSchedule(currentSchedule)
