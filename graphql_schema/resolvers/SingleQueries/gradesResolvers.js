@@ -8,7 +8,7 @@ const gradesResolvers = {
       retrievedGrades = retrievedGrades.results
       retrievedGrades.map((grade) => {
         grade.weight = grade.weight.low
-        if (grade.value.low) {
+        if (grade.value.low !== undefined) {
           grade.value = grade.value.low
         }
         delete Object.assign(grade, { value: grade.grade }).grade
