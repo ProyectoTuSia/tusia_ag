@@ -5,6 +5,7 @@ const authenticationTypeDefs = gql`
         authGetAllUsers(token: String!): [User!]!
         authGetUserByID(id: ID!, token: String!): User
         authLogin(email: String!, password: String!): String
+        authGetUserToken(email: String!): String!
     }
     
     type Mutation {

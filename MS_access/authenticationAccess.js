@@ -138,4 +138,26 @@ async function authDeleteUser (id, token) {
   }
 }
 
-module.exports = { loginAuthentication, authGetAllUsers, authGetUserById, authCreateUser, authUpdateUser, authDeleteUser }
+async function authauthGetUserToken (userCredentials) {
+  try {
+    const response = await fetch('http://35.208.124.181:8060/user/user-token', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userCredentials)
+    })
+
+    if (response.status === 404) {
+      return 'User not found'
+    }
+
+    const result = await response.json()
+    return result
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+module.exports = { loginAuthentication, authGetAllUsers, authGetUserById, authCreateUser, authUpdateUser, authDeleteUser, authauthGetUserToken }

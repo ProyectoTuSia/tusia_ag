@@ -1,10 +1,12 @@
+/* eslint-disable no-prototype-builtins */
 const {
   loginAuthentication,
   authGetAllUsers,
   authGetUserById,
   authCreateUser,
   authUpdateUser,
-  authDeleteUser
+  authDeleteUser,
+  authauthGetUserToken
 } = require('../../../MS_access/authenticationAccess')
 
 function copyData (userInDb, userUpdated) {
@@ -46,6 +48,17 @@ const authenticationResolvers = {
       const token = await loginAuthentication(userCredentials)
 
       return token
+    },
+
+    async authGetUserToken (parent, args, context) {
+      const { email } = args
+      const userCredentials = {
+        basicData: {
+          mail: email
+        }
+      }
+      const lastUserToken = await authauthGetUserToken(userCredentials)
+      return lastUserToken
     }
   },
 
