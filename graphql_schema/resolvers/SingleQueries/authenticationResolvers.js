@@ -51,13 +51,13 @@ const authenticationResolvers = {
     },
 
     async authGetUserToken (parent, args, context) {
-      const { email } = args
+      const { email, token } = args
       const userCredentials = {
         basicData: {
           mail: email
         }
       }
-      const lastUserToken = await authauthGetUserToken(userCredentials)
+      const lastUserToken = await authauthGetUserToken(userCredentials, token)
       return lastUserToken
     }
   },

@@ -138,13 +138,14 @@ async function authDeleteUser (id, token) {
   }
 }
 
-async function authauthGetUserToken (userCredentials) {
+async function authauthGetUserToken (userCredentials, token) {
   try {
     const response = await fetch('http://35.208.124.181:8060/user/user-token', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(userCredentials)
     })
