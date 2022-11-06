@@ -4,7 +4,7 @@ const axios = require("axios");
 // Manage REST communication with microservice
 
 const getExternalCourse = async () => {
-  const url = `http://127.0.0.1:8000/client/getExternalCourses`;
+  const url = `http://35.224.40.2:8000/client/getExternalCourses`;
   try {
     const response = await axios.get(url);
     const externalCourseData = response.data.data;
