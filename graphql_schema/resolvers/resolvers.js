@@ -8,7 +8,9 @@ const { courseSearchResolvers } = require('./SingleQueries/courseSearchResolvers
 const { gradesResolvers } = require('./SingleQueries/gradesResolvers')
 const { inscriptionResolvers } = require('./SingleQueries/inscriptionResolvers')
 const { scheduleResolvers } = require('./SingleQueries/scheduleResolvers')
+const { externalCoursesResolvers } = require('./SingleQueries/externalCoursesResolvers')
 
-const resolvers = _.merge({}, academicHistoryResolvers, authenticationResolvers, courseSearchResolvers, gradesResolvers, inscriptionResolvers, scheduleResolvers, addStudentToGroupsResolver, removeStudentFromGroupsResolver, consolidateGradesResolver)
+
+const resolvers = _.merge({}, academicHistoryResolvers, authenticationResolvers, courseSearchResolvers, gradesResolvers, inscriptionResolvers, scheduleResolvers, addStudentToGroupsResolver, removeStudentFromGroupsResolver, consolidateGradesResolver, externalCoursesResolvers)
 
 module.exports = resolvers
