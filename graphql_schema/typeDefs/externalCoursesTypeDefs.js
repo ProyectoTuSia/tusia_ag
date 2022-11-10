@@ -4,6 +4,7 @@ const externalCoursesTypeDefs = gql`
   # TYPES
   type Course {
     id: String!
+    nombre: String!
     creditos: Int!
     tipologia: String!
     sede: String!
@@ -11,6 +12,7 @@ const externalCoursesTypeDefs = gql`
     facultad : String!
     descripcion : String!
     prerequisitos: String!
+    codigo: String!
 
   }
   # Queries
