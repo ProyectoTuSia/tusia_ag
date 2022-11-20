@@ -16,16 +16,23 @@ app.use(printRequestInfo)
 app.use('/graphql', cors())
 
 // Configuración del servidor https, puerto 443
-const httpsServer = https.createServer({
-  cert: fs.readFileSync('./certificates/server.crt'),
-  key: fs.readFileSync('./certificates/key.pem')
-}, app)
+// const httpsServer = https.createServer({
+//   cert: fs.readFileSync('./certificates/server.crt'),
+//   key: fs.readFileSync('./certificates/key.pem')
+// }, app)
 
 // await new Promise((resolve) => httpsServer.listen({ port: 443 }, resolve))
 
-server.start().then(async (resolve) => {
+// server.start().then(async (resolve) => {
+//   server.applyMiddleware({ app, path: '/' })
+//   await httpsServer.listen({ port: 443 }, () =>
+//     console.log('Gateway API running at port: 443')
+//   )
+// })
+
+server.start().then(res => {
   server.applyMiddleware({ app, path: '/' })
-  await httpsServer.listen({ port: 443 }, () =>
-    console.log('Gateway API running at port: 443')
+  app.listen({ port: 3001 }, () =>
+    console.log('Gateway API running at port: 3001')
   )
 })
