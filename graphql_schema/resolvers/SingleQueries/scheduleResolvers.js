@@ -5,9 +5,10 @@ const scheduleResolvers = {
   Query: {
     async sc_getSchedule (_, params) {
       const userId = params.userId
+      console.log(params.userId)
       const scheduleData = await getSchedule(userId)
-      console.log(`the schedule data is: ${scheduleData}`)
-      return scheduleData
+      console.log(`the schedule data is: ${scheduleData.data.monday[0].professor}`)
+      return scheduleData.data
     }
   },
   // Mutations

@@ -3,15 +3,15 @@ const { gql } = require('apollo-server-express')
 const scheduleTypeDefs = gql`
     # TYPES
     type Course {
-        name : String!
-        professor : String!
-        courseId : Int!
-        credits : Int!
-        building : String!
-        classroom : String!
-        group : Int!
+        name : String
+        professor : String
+        courseId : Int
+        credits : Int
+        building : String
+        classroom : String
+        group : Int
         type: String
-        timetable : String!
+        timetable : String
     }
 
     input inputCourse {
@@ -53,13 +53,13 @@ const scheduleTypeDefs = gql`
     type sc_response {
         status : Int
         statusText : String
-        data : sc_responseData
+        data : sc_responseData!
     }
 
     
     # Queries
     type Query {
-        sc_getSchedule(userId : String!) : sc_Schedule!
+        sc_getSchedule(userId : String!) : sc_Schedule
     }
 
     # Mutations
