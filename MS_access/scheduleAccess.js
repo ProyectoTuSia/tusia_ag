@@ -7,7 +7,7 @@ const fetch = require("node-fetch");
 
 const getSchedule = async (userId) => {
   // const url = `http://35.225.13.43:8000/consulta_horario/${userId}`
-  const url = `http://127.0.0.1:8000/consulta_horario/${userId}`;
+  const url = `http://tusia-consultahorario-ms-service.default.svc.cluster.local:8000/consulta_horario/${userId}`;
   return await fetch(url, {
     method: "GET",
   })
@@ -29,7 +29,7 @@ const getSchedule = async (userId) => {
 };
 
 const putSchedule = async (scheduleData) => {
-  const url = `http://127.0.0.1:8000/consulta_horario/${scheduleData.userId}`;
+  const url = `http://tusia-consultahorario-ms-service.default.svc.cluster.local:8000/consulta_horario/${scheduleData.userId}`;
   return await fetch(url, {
     method: "PUT",
   })

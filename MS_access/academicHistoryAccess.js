@@ -1,5 +1,5 @@
 const requestPromiseNative = require('request-promise-native')
-const ip = '34.135.71.7'
+const ip = 'tusia-historiaacademica-ms-service.default.svc.cluster.local'
 
 // Manage REST communication with microservice
 const getAverages = async (id) => {

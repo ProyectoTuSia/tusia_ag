@@ -1,6 +1,6 @@
 // Manage REST communication with microservice
 const fetch = require('node-fetch')
-const host = 'http://93.188.164.106:8086'
+const host = 'http://tusia-grades-ms-service.default.svc.cluster.local:8086'
 
 const getGroupGradesPetition = async (courseCode, courseGroup) => {
   const url = host + `/grades/${courseCode}/${courseGroup}`

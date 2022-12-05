@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const requestpromisenative = require('request-promise-native')
-const host = '35.208.191.153'
+const host = 'tusia-buscadorcursos-ms-service.default.svc.cluster.local'
 const getCampus = async () => {
   const url = 'http://' + host + ':4325/models/campus/'
   return await fetch(url, {

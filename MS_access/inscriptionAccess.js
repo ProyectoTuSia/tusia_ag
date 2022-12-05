@@ -1,7 +1,7 @@
 // Manage REST communication with microservice
 const requestpromisenative = require('request-promise-native')
 
-const host = '35.239.209.74'
+const host = 'tusia-inscripcionasignaturas-ms-service.default.svc.cluster.local'
 
 const getAllStudents = async () => {
   const options = {
