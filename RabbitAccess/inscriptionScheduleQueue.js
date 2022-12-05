@@ -2,7 +2,7 @@ const amqp = require('amqplib/callback_api')
 
 // this function should receive the body of th schedule
 const createSchedule = (schedule) => {
-  amqp.connect('amqp://35.223.72.88:5672', function (error0, connection) {
+  amqp.connect('amqp://10.208.11.45:5672', function (error0, connection) {
     if (error0) {
       throw error0
     }
